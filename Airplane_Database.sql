@@ -46,7 +46,24 @@ CREATE TABLE Price (
 
 /*Nasna*/
 /*Booking*/
+CREATE TABLE Booking(
+  Email_id CHAR(20), /*Varchar*/
+  flight_num INT,
+  seat_type char(5),
+  /*Flights_ID char(5) NOT NULL airline_id, flight_num, f_date*/
+);
 
 /*BookedFlights*/
-
+CREATE TABLE Booked_Flights(
+  Email_id CHAR(20), /*Varchar*/
+  airline_ID CHAR(10),
+  Flight_No char(10),
+  f_date DATE
+);
 /*MilageProgram*/
+CREATE TABLE MilageProgram(
+  Email_id CHAR(20), /*Varchar*/
+  airline_ID CHAR(10), 
+  /*duration INT(50),*/
+  bonus_miles int
+);
