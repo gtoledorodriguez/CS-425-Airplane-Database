@@ -73,8 +73,8 @@ CREATE TABLE Flight (
   dest_airport CHAR(3) NOT NULL, /*Destination Airport*/
   depart_time TIME(0) NOT NULL,
   arrival_time TIME(0) NOT NULL,
-  num_ec_seats INT NOT NULL,
-  num_fc_seats INT NOT NULL,
+  num_ec_seats INT DEFAULT 180,
+  num_fc_seats INT DEFAULT 80,
   PRIMARY KEY (airline_id, flight_num, f_date),
   FOREIGN KEY (airline_id) REFERENCES Airline(airline_id)
 );
