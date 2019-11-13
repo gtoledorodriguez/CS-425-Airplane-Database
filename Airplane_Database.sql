@@ -83,8 +83,8 @@ CREATE TABLE Price (
   airline_id CHAR(2),
   flight_num INT,
   f_date DATE,
-  ec_price INT NOT NULL,
-  fc_price INT NOT NULL,
+  ec_price INT DEFAULT 50,
+  fc_price INT DEFAULT 100,
   CHECK (fc_price>ec_price),
   PRIMARY KEY (airline_id, flight_num, f_date,ec_price,fc_price),
   FOREIGN KEY (airline_id, flight_num, f_date) REFERENCES Flight(airline_id, flight_num, f_date)
@@ -110,7 +110,7 @@ CREATE TABLE Booked_Flights(
 /*MilageProgram*/
 CREATE TABLE MilageProgram(
   Email_id CHAR(20), /*Varchar*/
-  airline_ID CHAR(10), 
+  airline_ID CHAR(10),
   /*duration INT(50),*/
   bonus_miles int
 );
