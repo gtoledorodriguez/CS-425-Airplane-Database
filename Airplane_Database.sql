@@ -77,6 +77,7 @@ CREATE TABLE Flight (
   num_fc_seats INT DEFAULT 80,
   PRIMARY KEY (airline_id, flight_num, f_date),
   FOREIGN KEY (airline_id) REFERENCES Airline(airline_id)
+	CHECK((num_ec_seats+num_fc_seats)=240)
 );
 /*Price*/
 CREATE TABLE Price (
