@@ -64,6 +64,9 @@ CREATE TABLE Airline(
   country varchar(256),
   PRIMARY KEY (airline_id)
 );
+
+CREATE INDEX airline_index ON Airline (airline_id);
+
 /*Flight*/
 CREATE TABLE Flight (
   airline_id CHAR(2),
