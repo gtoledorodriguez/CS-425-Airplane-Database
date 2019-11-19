@@ -104,14 +104,14 @@ CREATE TABLE Booking(
 /*BookedFlights*/
 CREATE TABLE Booked_Flights(
   Email_id CHAR(20), /*Varchar*/
-  airline_ID CHAR(10),
+  airline_id CHAR(10),
   Flight_No char(10),
   f_date DATE
 );
 /*MilageProgram*/
 CREATE TABLE MilageProgram(
   Email_id CHAR(20), /*Varchar*/
-  airline_ID CHAR(10),
+  airline_id CHAR(10),
   /*duration INT(50),*/
   bonus_miles int
 );
