@@ -82,6 +82,9 @@ CREATE TABLE Flight (
   FOREIGN KEY (airline_id) REFERENCES Airline(airline_id)
 	CHECK((num_ec_seats+num_fc_seats)=240)
 );
+
+CREATE INDEX flight_index ON Flight (airline_id, flight_num, f_date);
+
 /*Price*/
 CREATE TABLE Price (
   airline_id CHAR(2),
