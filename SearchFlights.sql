@@ -12,7 +12,18 @@ ec_price if there are open ec spots
 fc_price if there are open fc spots
 */
 
+/*Before button click shows:
+ depart_airport
+ dest_airport
+ f_date
+ */
+/*Choose Flight*/
+
+
+/*Customer Chooses if return, limit, max lenght, price*/
+/*After choosing return flight, maybe in a column next to Flight*/
 /*Choose Return Flight*/
+
 
 /*limit number of connections*/
 /*  Example */
@@ -26,3 +37,8 @@ LIMIT number;
 /*Max length of trip*/
 
 /*price*/
+
+
+/*Ordered by flight*/
+
+/*Ordered by price*/
