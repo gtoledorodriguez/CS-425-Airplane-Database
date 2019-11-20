@@ -1,13 +1,13 @@
 # CS-425-Airplane-Database
-What we are/will need to do:
+## What we are/will need to do:
 
-Omesh:
+### Omesh:
 - Update Lucidchart
 
-Gladys:
+### Gladys:
 - ? Meet with group to find out
 
-Nasna:
+### Nasna:
 - Update Lucidchart
 
 Create a Airplane Database with three group members.
