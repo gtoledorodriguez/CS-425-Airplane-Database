@@ -1,4 +1,5 @@
 /* Create Database Tables */
+/*Omesh*/
 /*Customer*/
 CREATE TABLE Customer (
 	email_id VARCHAR(25),
@@ -128,23 +129,35 @@ CREATE TABLE Price (
 /*Nasna*/
 /*Booking*/
 CREATE TABLE Booking(
-  Email_id CHAR(20), /*Varchar*/
+  email_id CHAR(20), /*Varchar*/
   flight_num INT,
   seat_type char(5),
+  cc_number,
+  PRIMARY KEY (email_id),
+  FOREIGN KEY (flight_num, cc_number) REFERENCES CreditCard(cc_number)
+  FOREIGN KEY (flight_num)REFERENCES Flight(airline_id)
   /*Flights_ID char(5) NOT NULL airline_id, flight_num, f_date*/
 );
-
+CREATE INDEX Booking_index ON Booking (email_id);
 /*BookedFlights*/
 CREATE TABLE Booked_Flights(
-  Email_id CHAR(20), /*Varchar*/
+  email_id CHAR(20), /*Varchar*/
   airline_id CHAR(10),
-  Flight_No char(10),
+  flight_Num char(10),
   f_date DATE
+  PRIMARY KEY (email_id),
+  FOREIGN KEY (flight_num, f_date) REFERENCES Flight(flight_num, f_date)
 );
+CREATE INDEX Booked_Flights_index ON Booked_Flights (email_id);
 /*MilageProgram*/
 CREATE TABLE MilageProgram(
-  Email_id CHAR(20), /*Varchar*/
+  email_id CHAR(20), /*Varchar*/
   airline_id CHAR(10),
   /*duration INT(50),*/
-  bonus_miles int
+  bonus_miles int,
+  bonus_id char(10),
+  PRIMARY KEY (bonus_id),
+  FOREIGN KEY (email_id) REFERENCES Customer(email_id)
+  FOREIGN KEY (airline_id)REFERENCES Flight(airline_id)
 );
+CREATE INDEX MileageProgram_index ON MilageProgram (email_id);

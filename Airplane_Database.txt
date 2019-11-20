@@ -8,44 +8,33 @@ CREATE TABLE Customer (
 	first_name VARCHAR(15) NOT NULL,
 	middle_name VARCHAR(15),
 	last_name VARCHAR(25) NOT NULL,
-	airport_id CHAR(3) NOT NULL,
 	PRIMARY KEY (email_id),
-	FOREIGN KEY (airport_id),
 	CHECK (age >=0)
 );
 
-CREATE INDEX Customer_index ON Customer(email_id);
+CREATE INDEX Customer_index ON Customer(first_name, last_name);
 
 /*CustAddress*/
 CREATE TABLE Address (
-	address_ID INT AUTO_INCREMENT,
-	email_id VARCHAR(25),
+	address_id INT AUTO_INCREMENT,
 	street_number VARCHAR(10) NOT NULL,
 	street_name VARCHAR(35) NOT NULL,
 	apt_number VARCHAR(5),
 	city VARCHAR(30) NOT NULL,
 	state VARCHAR(20) NOT NULL,
 	zipcode VARCHAR(9) NOT NULL,
-	PRIMARY KEY (email_id, address_id),
-	FOREIGN KEY (email_id)  REFERENCES Customer
+	PRIMARY KEY (address_id),
 );
 
-CREATE INDEX Address_index ON Address(street_number, street_name);
+CREATE INDEX Address_index ON Address(city, state);
 
 /*CardInfo*/
 CREATE TABLE CreditCard (
 	cc_number BIGINT,
-	email_id VARCHAR(25),
-	address_id INT NOT NULL,
 	cvv INT NOT NULL,
 	exp_month INT NOT NULL,
 	exp_year INT NOT NULL,
-	first_name VARCHAR(15) NOT NULL,
-	middle_name VARCHAR(15),
-	last_name VARCHAR(25) NOT NULL,
-	PRIMARY KEY (email_id, cc_number),
-	FOREIGN KEY (email_id)  REFERENCES Customer,
-	FOREIGN KEY (address_ID)  REFERENCES Address ON DELETE CASCADE,
+	PRIMARY KEY (cc_number),
 	CHECK (exp_month BETWEEN 1 AND 12),
 	CHECK (exp_year BETWEEN 2019 AND 2030)
 );
@@ -58,11 +47,42 @@ CREATE TABLE Airport (
 	name VARCHAR(55),
 	country VARCHAR(22),
 	state CHAR(2),
-	PRIMARY KEY (address_id),
+	PRIMARY KEY (airport_id),
 );
 
-CREATE INDEX Airport_index ON Airport(airport_id);
+CREATE INDEX Airport_index ON Airport(country, state);
 
+CREATE TABLE Billing (
+	cc_number BIGINT,
+	address_id INT NOT NULL,
+	PRIMARY KEY (cc_number),
+	FOREIGN KEY (cc_number) REFERENCES CreditCard,
+	FOREIGN KEY (address_id) REFERENCES Address
+);
+
+CREATE TABLE Lives (
+	email_id VARCHAR(25),
+	address_id INT NOT NULL,
+	PRIMARY KEY (email_id),
+	FOREIGN KEY (email_id) REFERENCES Customer,
+	FOREIGN KEY (address_id) REFERENCES Address
+);
+
+CREATE TABLE HasCC (
+	email_id VARCHAR(25),
+	address_id INT NOT NULL,
+	PRIMARY KEY (email_id),
+	FOREIGN KEY (email_id) REFERENCES Customer,
+	FOREIGN KEY (address_id) REFERENCES Address
+);
+
+CREATE TABLE HomeAirport (
+	email_id VARCHAR(25),
+	airport_id CHAR(3) NOT NULL,
+	PRIMARY KEY (email_id),
+	FOREIGN KEY (email_id) REFERENCES Customer,
+	FOREIGN KEY (airport_id) REFERENCES Airport
+);
 
 /*Gladys*/
 /*Airline*/
@@ -141,4 +161,3 @@ CREATE TABLE MilageProgram(
   FOREIGN KEY (airline_id)REFERENCES Flight(airline_id)
 );
 CREATE INDEX MileageProgram_index ON MilageProgram (email_id);
-
