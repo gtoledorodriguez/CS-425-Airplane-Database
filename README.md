@@ -2,13 +2,17 @@
 ## What we are/will need to do:
 
 ### Omesh:
-- Update Lucidchart
+- Update Lucidchart?
+- Make functions/procedures
 
 ### Gladys:
-- ? Meet with group to find out
+- Update sql to make table for relations instead of having forien keys.
+- Ask team about Flight Airline
+- Make functions/procedures
 
 ### Nasna:
-- Update Lucidchart
+- Update Lucidchart?
+- Make functions/procedures
 
 ## Project: Airplane Database
 Create a Airplane Database with three group members.
