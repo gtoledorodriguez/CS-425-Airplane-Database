@@ -72,6 +72,9 @@ CREATE TABLE Airline(
   country varchar(256),
   PRIMARY KEY (airline_id)
 );
+
+CREATE INDEX airline_index ON Airline (airline_id);
+
 /*Flight*/
 CREATE TABLE Flight (
   airline_id CHAR(2),
@@ -87,6 +90,9 @@ CREATE TABLE Flight (
   FOREIGN KEY (airline_id) REFERENCES Airline(airline_id)
 	CHECK((num_ec_seats+num_fc_seats)=240)
 );
+
+CREATE INDEX flight_index ON Flight (airline_id, flight_num, f_date);
+
 /*Price*/
 CREATE TABLE Price (
   airline_id CHAR(2),
@@ -112,14 +118,14 @@ CREATE TABLE Booking(
 /*BookedFlights*/
 CREATE TABLE Booked_Flights(
   Email_id CHAR(20), /*Varchar*/
-  airline_ID CHAR(10),
+  airline_id CHAR(10),
   Flight_No char(10),
   f_date DATE
 );
 /*MilageProgram*/
 CREATE TABLE MilageProgram(
   Email_id CHAR(20), /*Varchar*/
-  airline_ID CHAR(10),
+  airline_id CHAR(10),
   /*duration INT(50),*/
   bonus_miles int
 );
