@@ -10,15 +10,14 @@ CREATE TABLE Customer (
 	last_name VARCHAR(25) NOT NULL,
 	airport_id CHAR(3) NOT NULL,
 	PRIMARY KEY (email_id),
-	FOREIGN KEY (airport_id) REFERENCES Airport(airport_id),
-
+	FOREIGN KEY (airport_id) REFERENCES Airport(airport_id)
 );
 
 CREATE INDEX Customer_index ON Customer(email_id);
 
 /*CustAddress*/
 CREATE TABLE Address (
-	address_ID INT SERIAL, /*Serial is postgreSQL equivalent of AUTOINCREMENT*/
+	address_ID SERIAL, /*Serial is postgreSQL equivalent of AUTOINCREMENT, it does not need INT*/
 	email_id VARCHAR(25),
 	street_number VARCHAR(10) NOT NULL,
 	street_name VARCHAR(35) NOT NULL,
@@ -38,16 +37,15 @@ CREATE TABLE CreditCard (
 	email_id VARCHAR(25),
 	address_id INT NOT NULL,
 	cvv INT NOT NULL,
-	exp_month INT NOT NULL CHECK (exp_month BETWEEN 1 AND 12),,
+	exp_month INT NOT NULL CHECK (exp_month BETWEEN 1 AND 12),
 	exp_year INT NOT NULL CHECK (exp_year BETWEEN 2019 AND 2030),
 	first_name VARCHAR(15) NOT NULL,
 	middle_name VARCHAR(15),
 	last_name VARCHAR(25) NOT NULL,
 	PRIMARY KEY (email_id, cc_number),
 	FOREIGN KEY (email_id)  REFERENCES Customer(email_id),
-	FOREIGN KEY (address_ID)  REFERENCES Address(address_ID) ON DELETE CASCADE,
-
-);
+	FOREIGN KEY (email_id, address_id) REFERENCES Address(email_id, address_id) ON DELETE CASCADE
+); /*Had to have email_id reference address as well or we got an no unique constrain matching error*/
 
 CREATE INDEX CreditCard_index ON CreditCard(cc_number);
 
@@ -57,7 +55,7 @@ CREATE TABLE Airport (
 	name VARCHAR(55),
 	country VARCHAR(22),
 	state CHAR(2),
-	PRIMARY KEY (address_id),
+	PRIMARY KEY (airport_id)
 );
 
 CREATE INDEX Airport_index ON Airport(airport_id);
@@ -108,17 +106,18 @@ CREATE TABLE Price (
 CREATE TABLE Booking(
   email_id CHAR(20), /*Varchar*/
   flight_num INT,
+  f_date DATE,
   seat_type char(5),
   cc_number INT,
-  airline_id CHAR(5),
+  airline_id CHAR(2),
   depart_airport CHAR(3) NOT NULL, /*Departing Airport*/
   dest_airport CHAR(3) NOT NULL, /*Destination Airport*/
   depart_time TIME(0) NOT NULL,
   arrival_time TIME(0) NOT NULL,
   PRIMARY KEY (email_id),
-  FOREIGN KEY (cc_number) REFERENCES CreditCard(cc_number),
-  FOREIGN KEY (airline_id) REFERENCES Airline(airline_id)
-  FOREIGN KEY (flight_num, depart_airport, dest_airport, arrival_time,depart_time) REFERENCES Flight(flight_num)
+  FOREIGN KEY (cc_number,email_id) REFERENCES CreditCard(cc_number,email_id),
+  FOREIGN KEY (airline_id) REFERENCES Airline(airline_id),
+  FOREIGN KEY (flight_num,airline_id,f_date, depart_airport, dest_airport, arrival_time,depart_time) REFERENCES Flight(flight_num,airline_id,f_date, depart_airport, dest_airport, arrival_time,depart_time)
   /*Flights_ID char(5) NOT NULL airline_id, flight_num, f_date*/
 );
 CREATE INDEX Booking_index ON Booking (depart_airport,dest_airport,airline_id);
@@ -157,12 +156,14 @@ CREATE INDEX Booked_Flights_index ON Booked_Flights (airline_id, flight_num, f_d
 /*MilageProgram*/
 CREATE TABLE MilageProgram(
   email_id CHAR(20), /*Varchar*/
-  airline_id CHAR(10),
+	airline_id CHAR(2),
+  flight_num INT,
+  f_date DATE,
   /*duration INT(50),*/
   bonus_miles int,
   bonus_id char(10),
   PRIMARY KEY (bonus_id),
   FOREIGN KEY (email_id) REFERENCES Customer(email_id),
-  FOREIGN KEY (airline_id) REFERENCES Flight(airline_id)
+  FOREIGN KEY (airline_id, flight_num, f_date) REFERENCES Flight(airline_id, flight_num, f_date)
 );
 CREATE INDEX MileageProgram_index ON MilageProgram (email_id);
