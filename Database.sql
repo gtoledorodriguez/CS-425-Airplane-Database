@@ -105,7 +105,9 @@ CREATE TABLE Price (
 /*Booking*/
 CREATE TABLE Booking(
   email_id CHAR(20), /*Varchar*/
+	airline_id CHAR(2),
   flight_num INT,
+  f_date DATE,
   seat_type char(5),
   cc_number INT,
   airline_id CHAR(5),
@@ -114,9 +116,9 @@ CREATE TABLE Booking(
   depart_time TIME(0) NOT NULL,
   arrival_time TIME(0) NOT NULL,
   PRIMARY KEY (email_id),
-  FOREIGN KEY (cc_number) REFERENCES CreditCard(cc_number),
+  FOREIGN KEY (cc_number,email_id) REFERENCES CreditCard(cc_number,email_id),
   FOREIGN KEY (airline_id) REFERENCES Airline(airline_id),
-  FOREIGN KEY (flight_num, depart_airport, dest_airport, arrival_time,depart_time) REFERENCES Flight(flight_num, depart_airport, dest_airport, arrival_time,depart_time)
+  FOREIGN KEY (flight_num,airline_id,f_date, depart_airport, dest_airport, arrival_time,depart_time) REFERENCES Flight(flight_num,airline_id,f_date, depart_airport, dest_airport, arrival_time,depart_time)
   /*Flights_ID char(5) NOT NULL airline_id, flight_num, f_date*/
 );
 CREATE INDEX Booking_index ON Booking (depart_airport,dest_airport,airline_id);
