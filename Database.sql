@@ -17,7 +17,7 @@ CREATE INDEX Customer_index ON Customer(email_id);
 
 /*CustAddress*/
 CREATE TABLE Address (
-	address_ID INT SERIAL, /*Serial is postgreSQL equivalent of AUTOINCREMENT*/
+	address_ID SERIAL, /*Serial is postgreSQL equivalent of AUTOINCREMENT, it does not need INT*/
 	email_id VARCHAR(25),
 	street_number VARCHAR(10) NOT NULL,
 	street_name VARCHAR(35) NOT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE CreditCard (
 	email_id VARCHAR(25),
 	address_id INT NOT NULL,
 	cvv INT NOT NULL,
-	exp_month INT NOT NULL CHECK (exp_month BETWEEN 1 AND 12),,
+	exp_month INT NOT NULL CHECK (exp_month BETWEEN 1 AND 12),
 	exp_year INT NOT NULL CHECK (exp_year BETWEEN 2019 AND 2030),
 	first_name VARCHAR(15) NOT NULL,
 	middle_name VARCHAR(15),
