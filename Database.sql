@@ -105,12 +105,11 @@ CREATE TABLE Price (
 /*Booking*/
 CREATE TABLE Booking(
   email_id CHAR(20), /*Varchar*/
-	airline_id CHAR(2),
   flight_num INT,
   f_date DATE,
   seat_type char(5),
   cc_number INT,
-  airline_id CHAR(5),
+  airline_id CHAR(2),
   depart_airport CHAR(3) NOT NULL, /*Departing Airport*/
   dest_airport CHAR(3) NOT NULL, /*Destination Airport*/
   depart_time TIME(0) NOT NULL,
