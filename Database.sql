@@ -44,9 +44,8 @@ CREATE TABLE CreditCard (
 	last_name VARCHAR(25) NOT NULL,
 	PRIMARY KEY (email_id, cc_number),
 	FOREIGN KEY (email_id)  REFERENCES Customer(email_id),
-	FOREIGN KEY (address_ID)  REFERENCES Address(address_ID) ON DELETE CASCADE,
-
-);
+	FOREIGN KEY (email_id, address_id) REFERENCES Address(email_id, address_id) ON DELETE CASCADE
+); /*Had to have email_id reference address as well or we got an no unique constrain matching error*/
 
 CREATE INDEX CreditCard_index ON CreditCard(cc_number);
 
