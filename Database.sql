@@ -4,14 +4,14 @@
 CREATE TABLE Customer (
 	email_id VARCHAR(25),
 	password VARCHAR(16) NOT NULL,
-	age int NOT NULL CHECK (age >=0),
+	age INT NOT NULL CHECK (age >=0),
 	first_name VARCHAR(15) NOT NULL,
 	middle_name VARCHAR(15),
 	last_name VARCHAR(25) NOT NULL,
 	airport_id CHAR(3) NOT NULL,
 	PRIMARY KEY (email_id),
 	FOREIGN KEY (airport_id) REFERENCES Airport(airport_id),
-	
+
 );
 
 CREATE INDEX Customer_index ON Customer(email_id);
@@ -46,7 +46,7 @@ CREATE TABLE CreditCard (
 	PRIMARY KEY (email_id, cc_number),
 	FOREIGN KEY (email_id)  REFERENCES Customer(email_id),
 	FOREIGN KEY (address_ID)  REFERENCES Address(address_ID) ON DELETE CASCADE,
-	
+
 );
 
 CREATE INDEX CreditCard_index ON CreditCard(cc_number);
@@ -83,11 +83,10 @@ CREATE TABLE Flight (
   dest_airport CHAR(3) NOT NULL, /*Destination Airport*/
   depart_time TIME(0) NOT NULL,
   arrival_time TIME(0) NOT NULL,
-  num_ec_seats INT DEFAULT 180,
-  num_fc_seats INT DEFAULT 80,
+  num_ec_seats INT DEFAULT 180 CHECK (num_ec_seats>=0),
+  num_fc_seats INT DEFAULT 80 CHECK (num_fc_seats>=0),
   PRIMARY KEY (airline_id, flight_num, f_date),
   FOREIGN KEY (airline_id) REFERENCES Airline(airline_id)
-	CHECK((num_ec_seats+num_fc_seats)=240)
 );
 
 CREATE INDEX flight_index ON Flight (airline_id, flight_num, f_date);
@@ -97,9 +96,8 @@ CREATE TABLE Price (
   airline_id CHAR(2),
   flight_num INT,
   f_date DATE,
-  ec_price INT DEFAULT 50,
-  fc_price INT DEFAULT 100,
-  CHECK (fc_price>ec_price),
+  ec_price INT DEFAULT 50 CHECK (ec_price>=0),
+  fc_price INT DEFAULT 100 CHECK (fc_price>ec_price),
   PRIMARY KEY (airline_id, flight_num, f_date,ec_price,fc_price),
   FOREIGN KEY (airline_id, flight_num, f_date) REFERENCES Flight(airline_id, flight_num, f_date)
 
@@ -150,7 +148,7 @@ CREATE TABLE Booked_Flights (
   num_fc_seats INT DEFAULT 80, /*-1 function */
   PRIMARY KEY (email_id),
   FOREIGN KEY (airline_id) REFERENCES Airline(airline_id),
-  FOREIGN KEY (flight_num, f_date, num_ec_seats, num_fc_seats, depart_airport, dest_airport,depart_time, arrival_time) 
+  FOREIGN KEY (flight_num, f_date, num_ec_seats, num_fc_seats, depart_airport, dest_airport,depart_time, arrival_time)
   	REFERENCES Flight (airline_id, flight_num, f_date, num_ec_seats, num_fc_seats, depart_airport, dest_airport,depart_time, arrival_time)
 );
 
