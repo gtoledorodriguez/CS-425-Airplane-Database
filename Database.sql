@@ -10,8 +10,7 @@ CREATE TABLE Customer (
 	last_name VARCHAR(25) NOT NULL,
 	airport_id CHAR(3) NOT NULL,
 	PRIMARY KEY (email_id),
-	FOREIGN KEY (airport_id) REFERENCES Airport(airport_id),
-
+	FOREIGN KEY (airport_id) REFERENCES Airport(airport_id)
 );
 
 CREATE INDEX Customer_index ON Customer(email_id);
@@ -57,7 +56,7 @@ CREATE TABLE Airport (
 	name VARCHAR(55),
 	country VARCHAR(22),
 	state CHAR(2),
-	PRIMARY KEY (address_id),
+	PRIMARY KEY (airport_id)
 );
 
 CREATE INDEX Airport_index ON Airport(airport_id);
