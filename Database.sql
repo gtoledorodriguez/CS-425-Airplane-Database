@@ -18,7 +18,7 @@ CREATE INDEX Customer_index ON Customer(email_id);
 
 /*CustAddress*/
 CREATE TABLE Address (
-	address_ID INT AUTO_INCREMENT,
+	address_ID INT SERIAL, /*Serial is postgreSQL equivalent of AUTOINCREMENT*/
 	email_id VARCHAR(25),
 	street_number VARCHAR(10) NOT NULL,
 	street_name VARCHAR(35) NOT NULL,
