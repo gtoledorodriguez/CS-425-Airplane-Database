@@ -2,16 +2,14 @@
 ## What we are/will need to do:
 
 ### Omesh:
-- Update Lucidchart?
 - Make functions/procedures
 
 ### Gladys:
-- Update sql to make table for relations instead of having forien keys.
 - Ask team about Flight Airline
+- Talk to Team about ideas to fix error given by Booking and BookedFlights
 - Make functions/procedures
 
 ### Nasna:
-- Update Lucidchart?
 - Make functions/procedures
 
 ## Project: Airplane Database

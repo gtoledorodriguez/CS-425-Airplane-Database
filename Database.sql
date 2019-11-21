@@ -114,6 +114,7 @@ CREATE TABLE Booking(
   FOREIGN KEY (cc_number,email_id) REFERENCES CreditCard(cc_number,email_id),
   FOREIGN KEY (airline_id) REFERENCES Airline(airline_id),
   FOREIGN KEY (flight_num,airline_id,f_date) REFERENCES Flight(flight_num,airline_id,f_date)
+
   /*Flights_ID char(5) NOT NULL airline_id, flight_num, f_date*/
 );
 CREATE INDEX Booking_index ON Booking (depart_airport,dest_airport,airline_id);
