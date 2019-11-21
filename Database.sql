@@ -110,14 +110,11 @@ CREATE TABLE Booking(
   seat_type char(5),
   cc_number INT,
   airline_id CHAR(2),
-  depart_airport CHAR(3) NOT NULL, /*Departing Airport*/
-  dest_airport CHAR(3) NOT NULL, /*Destination Airport*/
-  depart_time TIME(0) NOT NULL,
-  arrival_time TIME(0) NOT NULL,
   PRIMARY KEY (email_id),
   FOREIGN KEY (cc_number,email_id) REFERENCES CreditCard(cc_number,email_id),
   FOREIGN KEY (airline_id) REFERENCES Airline(airline_id),
-  FOREIGN KEY (flight_num,airline_id,f_date, depart_airport, dest_airport, arrival_time,depart_time) REFERENCES Flight(flight_num,airline_id,f_date, depart_airport, dest_airport, arrival_time,depart_time)
+  FOREIGN KEY (flight_num,airline_id,f_date) REFERENCES Flight(flight_num,airline_id,f_date)
+
   /*Flights_ID char(5) NOT NULL airline_id, flight_num, f_date*/
 );
 CREATE INDEX Booking_index ON Booking (depart_airport,dest_airport,airline_id);
@@ -139,16 +136,9 @@ CREATE TABLE Booked_Flights (
   email_id CHAR(20),
   flight_num INT,
   f_date DATE,
-  depart_airport CHAR(3) NOT NULL, /*Departing Airport*/
-  dest_airport CHAR(3) NOT NULL, /*Destination Airport*/
-  depart_time TIME(0) NOT NULL,
-  arrival_time TIME(0) NOT NULL,
-  num_ec_seats INT DEFAULT 180,
-  num_fc_seats INT DEFAULT 80, /*-1 function */
   PRIMARY KEY (email_id),
   FOREIGN KEY (airline_id) REFERENCES Airline(airline_id),
-  FOREIGN KEY (flight_num, f_date, num_ec_seats, num_fc_seats, depart_airport, dest_airport,depart_time, arrival_time)
-  	REFERENCES Flight (airline_id, flight_num, f_date, num_ec_seats, num_fc_seats, depart_airport, dest_airport,depart_time, arrival_time)
+  FOREIGN KEY (flight_num, f_date) REFERENCES Flight (flight_num, f_date)
 );
 
 CREATE INDEX Booked_Flights_index ON Booked_Flights (airline_id, flight_num, f_date);
