@@ -5,8 +5,8 @@
 - Make functions/procedures
 
 ### Gladys:
-- Ask team about Flight Airline
-- Talk to Team about ideas to fix error given by Booking and BookedFlights
+- Able to connect to database and do a simple query.
+- Will continue to make queries for the methods we need, mostly pertaining to Search By Flights
 - Make functions/procedures
 
 ### Nasna:
