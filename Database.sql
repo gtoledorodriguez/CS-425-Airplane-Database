@@ -13,20 +13,17 @@ CREATE TABLE Customer (
 	FOREIGN KEY (airport_id) REFERENCES Airport(airport_id)
 );
 
-CREATE INDEX Customer_index ON Customer(email_id);
+CREATE INDEX Customer_index ON Customer(email_id, last_name, first_name);
 
 /*CustAddress*/
 CREATE TABLE Address (
-	address_ID SERIAL, /*Serial is postgreSQL equivalent of AUTOINCREMENT, it does not need INT*/
-	email_id VARCHAR(25),
-	street_number VARCHAR(10) NOT NULL,
-	street_name VARCHAR(35) NOT NULL,
+	street_number VARCHAR(10),
+	street_name VARCHAR(35),
 	apt_number VARCHAR(5),
-	city VARCHAR(30) NOT NULL,
-	state VARCHAR(20) NOT NULL,
+	city VARCHAR(30),
+	state VARCHAR(20),
 	zipcode VARCHAR(9) NOT NULL,
-	PRIMARY KEY (email_id, address_id),
-	FOREIGN KEY (email_id)  REFERENCES Customer(email_id)
+	PRIMARY KEY (street_number, street_name, city, state)
 );
 
 CREATE INDEX Address_index ON Address(street_number, street_name);
@@ -34,17 +31,10 @@ CREATE INDEX Address_index ON Address(street_number, street_name);
 /*CardInfo*/
 CREATE TABLE CreditCard (
 	cc_number BIGINT,
-	email_id VARCHAR(25),
-	address_id INT NOT NULL,
 	cvv INT NOT NULL,
 	exp_month INT NOT NULL CHECK (exp_month BETWEEN 1 AND 12),
 	exp_year INT NOT NULL CHECK (exp_year BETWEEN 2019 AND 2030),
-	first_name VARCHAR(15) NOT NULL,
-	middle_name VARCHAR(15),
-	last_name VARCHAR(25) NOT NULL,
-	PRIMARY KEY (email_id, cc_number),
-	FOREIGN KEY (email_id)  REFERENCES Customer(email_id),
-	FOREIGN KEY (email_id, address_id) REFERENCES Address(email_id, address_id) ON DELETE CASCADE
+	PRIMARY KEY (cc_number)
 ); /*Had to have email_id reference address as well or we got an no unique constrain matching error*/
 
 CREATE INDEX CreditCard_index ON CreditCard(cc_number);
@@ -60,28 +50,38 @@ CREATE TABLE Airport (
 
 CREATE INDEX Airport_index ON Airport(airport_id);
 
-+CREATE TABLE Billing (
+CREATE TABLE Billing (
 	cc_number BIGINT,
-	address_id INT NOT NULL,
+	street_number VARCHAR(10) NOT NULL,
+	street_name VARCHAR(35)NOT NULL,
+	apt_number VARCHAR(5),
+	city VARCHAR(30) NOT NULL,
+	state VARCHAR(20) NOT NULL,
+	zipcode VARCHAR(9) NOT NULL
 	PRIMARY KEY (cc_number),
 	FOREIGN KEY (cc_number) REFERENCES CreditCard,
-	FOREIGN KEY (address_id) REFERENCES Address
+	FOREIGN KEY (street_number, street_name, city, state) REFERENCES Address
 );
 
 CREATE TABLE Lives (
 	email_id VARCHAR(25),
-	address_id INT NOT NULL,
+	street_number VARCHAR(10) NOT NULL,
+	street_name VARCHAR(35)NOT NULL,
+	apt_number VARCHAR(5),
+	city VARCHAR(30) NOT NULL,
+	state VARCHAR(20) NOT NULL,
+	zipcode VARCHAR(9) NOT NULL
 	PRIMARY KEY (email_id),
 	FOREIGN KEY (email_id) REFERENCES Customer,
-	FOREIGN KEY (address_id) REFERENCES Address
+	FOREIGN KEY (street_number, street_name, city, state) REFERENCES Address
 );
 
 CREATE TABLE HasCC (
 	email_id VARCHAR(25),
-	address_id INT NOT NULL,
-	PRIMARY KEY (email_id),
+	cc_number BIGINT,
+	PRIMARY KEY (email_id, cc_number),
 	FOREIGN KEY (email_id) REFERENCES Customer,
-	FOREIGN KEY (address_id) REFERENCES Address
+	FOREIGN KEY (cc_number) REFERENCES CreditCard
 );
 
 CREATE TABLE HomeAirport (
