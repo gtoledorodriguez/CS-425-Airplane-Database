@@ -60,7 +60,7 @@ CREATE TABLE Billing (
 	zipcode VARCHAR(9) NOT NULL,
 	PRIMARY KEY (cc_number),
 	FOREIGN KEY (cc_number) REFERENCES CreditCard,
-	FOREIGN KEY (street_number, street_name, apt_number, city, state, zipcode) REFERENCES Address
+	FOREIGN KEY (street_number, street_name, city, state, zipcode) REFERENCES Address
 );
 
 CREATE TABLE Lives (
