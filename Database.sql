@@ -60,6 +60,37 @@ CREATE TABLE Airport (
 
 CREATE INDEX Airport_index ON Airport(airport_id);
 
++CREATE TABLE Billing (
+	cc_number BIGINT,
+	address_id INT NOT NULL,
+	PRIMARY KEY (cc_number),
+	FOREIGN KEY (cc_number) REFERENCES CreditCard,
+	FOREIGN KEY (address_id) REFERENCES Address
+);
+
+CREATE TABLE Lives (
+	email_id VARCHAR(25),
+	address_id INT NOT NULL,
+	PRIMARY KEY (email_id),
+	FOREIGN KEY (email_id) REFERENCES Customer,
+	FOREIGN KEY (address_id) REFERENCES Address
+);
+
+CREATE TABLE HasCC (
+	email_id VARCHAR(25),
+	address_id INT NOT NULL,
+	PRIMARY KEY (email_id),
+	FOREIGN KEY (email_id) REFERENCES Customer,
+	FOREIGN KEY (address_id) REFERENCES Address
+);
+
+CREATE TABLE HomeAirport (
+	email_id VARCHAR(25),
+	airport_id CHAR(3) NOT NULL,
+	PRIMARY KEY (email_id),
+	FOREIGN KEY (email_id) REFERENCES Customer,
+	FOREIGN KEY (airport_id) REFERENCES Airport
+);
 
 /*Gladys*/
 /*Airline*/
@@ -88,7 +119,23 @@ CREATE TABLE Flight (
 );
 
 CREATE INDEX flight_index ON Flight (airline_id, flight_num, f_date);
+/*Ask about Flight Airline*/
 
+CREATE TABLE Departing_Airport (
+	airport_id CHAR(3) NOT NULL,
+  depart_airport CHAR(3) NOT NULL,
+  PRIMARY KEY (airport_id,depart_airport),
+  FOREIGN KEY (airport_id) REFERENCES Airport(airport_id),
+	FOREIGN KEY (depart_airport) REFERENCES Flight(depart_airport)
+);
+
+CREATE TABLE Destination_Airport (
+	airport_id CHAR(3) NOT NULL,
+  dest_airport CHAR(3) NOT NULL,
+  PRIMARY KEY (airport_id,dest_airport),
+  FOREIGN KEY (airport_id) REFERENCES Airport(airport_id),
+	FOREIGN KEY (depart_airport) REFERENCES Flight(depart_airport)
+);
 /*Price*/
 CREATE TABLE Price (
   airline_id CHAR(2),
