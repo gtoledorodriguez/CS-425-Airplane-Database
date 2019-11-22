@@ -23,7 +23,7 @@ CREATE TABLE Address (
 	city VARCHAR(30),
 	state VARCHAR(20),
 	zipcode VARCHAR(9) NOT NULL,
-	PRIMARY KEY (street_number, street_name, city, state)
+	PRIMARY KEY (street_number, street_name, city, state, zipcode)
 );
 
 CREATE INDEX Address_index ON Address(street_number, street_name);
@@ -35,7 +35,7 @@ CREATE TABLE CreditCard (
 	exp_month INT NOT NULL CHECK (exp_month BETWEEN 1 AND 12),
 	exp_year INT NOT NULL CHECK (exp_year BETWEEN 2019 AND 2030),
 	PRIMARY KEY (cc_number)
-); /*Had to have email_id reference address as well or we got an no unique constrain matching error*/
+);
 
 CREATE INDEX CreditCard_index ON CreditCard(cc_number);
 
@@ -60,7 +60,7 @@ CREATE TABLE Billing (
 	zipcode VARCHAR(9) NOT NULL,
 	PRIMARY KEY (cc_number),
 	FOREIGN KEY (cc_number) REFERENCES CreditCard,
-	FOREIGN KEY (street_number, street_name, city, state) REFERENCES Address
+	FOREIGN KEY (street_number, street_name, apt_number, city, state, zipcode) REFERENCES Address
 );
 
 CREATE TABLE Lives (
@@ -71,9 +71,9 @@ CREATE TABLE Lives (
 	city VARCHAR(30) NOT NULL,
 	state VARCHAR(20) NOT NULL,
 	zipcode VARCHAR(9) NOT NULL,
-	PRIMARY KEY (email_id),
+	PRIMARY KEY (email_id, street_number, street_name, city, state, zipcode),
 	FOREIGN KEY (email_id) REFERENCES Customer,
-	FOREIGN KEY (street_number, street_name, city, state) REFERENCES Address
+	FOREIGN KEY (street_number, street_name, city, state, zipcode) REFERENCES Address
 );
 
 CREATE TABLE HasCC (
