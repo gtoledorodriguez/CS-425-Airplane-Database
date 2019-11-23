@@ -12,6 +12,9 @@
 - Make functions/procedures
 - Finished Duration function
 - Finished Flight function
+- Finished Return Flight
+- Need to sort by Duration
+- Need to sort by Price
 
 ### Nasna:
 #### In charge of Booking, and Milege Program SQL script, App. Req. 4.4 and 4.5
