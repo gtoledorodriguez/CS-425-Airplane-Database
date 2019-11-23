@@ -32,9 +32,8 @@ public class App {
         return conn;
     }
 
-    public String duration(String cA, int cFn, Date cFd){
+    public void duration(String cA, int cFn, Date cFd){
     	String SQL = "SELECT arrival_time-depart_time AS duration FROM flight where flight.airline_id = ? and flight.flight_num = ? and flight.f_date = ?";
-    	String interval = "";
     	try(Connection conn = this.connect(); PreparedStatement pstmt = conn.prepareStatement(SQL)){
     		//System.out.println("Here");
     		pstmt.setString(1, cA);
@@ -46,12 +45,11 @@ public class App {
 
     		while(rs.next()) {
     			//System.out.println("Error?");
-    			System.out.println("Flight Duration (HH:MM:SS): "+rs.getString("duration"));
+    			System.out.println("Flight Duration (HH:MM:SS) : "+rs.getString("duration"));
     		}
     	} catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-		return interval;
     }
 
     public void getPrice(String cA, int cFn, Date cFd){
@@ -70,6 +68,25 @@ public class App {
     			System.out.println("Economic Seat Price: "+rs.getInt("ec_price"));
     			System.out.println("First Class Seat Price: "+rs.getInt("fc_price"));
     			System.out.println("Total Price (Ec. Price + Fc. Price): "+rs.getInt("total_price"));
+    		}
+    	} catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void getAirport(){
+    	String SQL = "Select airport_id, name from airport";
+    	try(Connection conn = this.connect(); PreparedStatement pstmt = conn.prepareStatement(SQL)){
+    		ResultSet rs = pstmt.executeQuery();
+
+    		System.out.println("\nIATA Code\tAirport Name");
+    		System.out.println("---------\t------------");
+    		while(rs.next()) {
+    			//System.out.println("Error?");
+    			String str = "";
+    			str = str + rs.getString("airport_id") + "\t\t" + rs.getString("name");
+
+    			System.out.println(str);
     		}
     	} catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -203,12 +220,19 @@ public class App {
                     				System.out.println("How many flights would you like to see? (Make sure it's less than or equal to 10):");
                     				l = s.nextInt();
                     			}
-                    			System.out.println("Which airport are you departing from?\n- ORD\n- IAD");
-                    			String dea = s.next();
-                    			System.out.println("Which airport are you going to?\n- ORD\n- IAD");
-                    			String ga = s.next();
 
-                    			app.searchFlights(l,dea,ga);
+                    			System.out.println("\nWhich airport are you departing from?");
+                    			app.getAirport();
+                    			System.out.println("\nPlease type the IATA Code (E.g., ORD): ");
+                    			String dea = s.next().toUpperCase();
+
+                    			System.out.println("\nWhich airport are you going to?");
+                    			app.getAirport();
+                    			System.out.println("\nPlease type the IATA Code (E.g., ORD): ");
+                    			String ga = s.next().toUpperCase();
+
+                    			app.searchFlights(l,dea,ga); //limit, departure airport, destination airport
+
 
                     		}else {
                     			System.out.println("No? Alright, your loss.");
