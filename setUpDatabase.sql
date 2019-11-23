@@ -8,6 +8,15 @@ CREATE ROLE admin WITH
   NOREPLICATION
   PASSWORD 'admin';
 
+  CREATE ROLE jane WITH
+    LOGIN
+    SUPERUSER
+    NOINHERIT
+    CREATEDB
+    CREATEROLE
+    NOREPLICATION
+    PASSWORD '123';
+
 /*Add Create database*/
 /*Copy and paste DDL*/
 
