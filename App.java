@@ -233,6 +233,13 @@ public class App {
 
                     			app.searchFlights(l,dea,ga); //limit, departure airport, destination airport
 
+                    			System.out.println("Would you like to look at return flights? (Y/N)");
+                    			String rfq = s.next();
+                    			if(rfq.compareToIgnoreCase("Y")==0) {
+                    				app.searchFlights(l,ga,dea); //switched departure and destination airport: limit, destination airport, departure airport
+                    			}else {
+                    				System.out.println("Fine. We didn't like you anyways.");
+                    			}
 
                     		}else {
                     			System.out.println("No? Alright, your loss.");
