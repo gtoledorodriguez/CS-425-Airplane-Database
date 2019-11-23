@@ -10,6 +10,8 @@
 - Able to connect to database and do a simple query.
 - Will continue to make queries for the methods we need, mostly pertaining to Search By Flights
 - Make functions/procedures
+- Finished Duration function
+- Finished Flight function
 
 ### Nasna:
 #### In charge of Booking, and Milege Program SQL script, App. Req. 4.4 and 4.5

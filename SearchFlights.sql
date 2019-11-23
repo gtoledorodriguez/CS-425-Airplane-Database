@@ -17,13 +17,7 @@ fc_price if there are open fc spots
  dest_airport
  f_date
  */
- /*
- CREATE VIEW userC AS
- SELECT depart_airport, dest_airport, f_date
- FROM Flight
- DEFAULT 10;
- */
-/*Choose Flight*/
+/*Choose Flight ----Done-----*/
 /*
 SELECT *
 FROM Flight
@@ -47,7 +41,7 @@ WHERE condition
 LIMIT number;
 */
 
-/*Max length of trip, or Duration*/
+/*Max length of trip, or Duration ----Done-----*/
 /*Tentative*/
 /*
 CALL tripDuration(userC.airline_id, userC.flight_num, userC.f_date)
