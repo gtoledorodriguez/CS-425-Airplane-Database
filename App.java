@@ -53,12 +53,15 @@ public class App {
         }
 		return interval;
     }
-    public String searchFlights(int limit){
-    	String SQL = "SELECT * from Flight Limit ?";
+    public String searchFlights(int limit, String dea, String ga){
+    	String SQL = "SELECT * from Flight WHERE depart_airport = ? and dest_airport = ? Limit ?";
     	String interval = "";
     	try(Connection conn = this.connect(); PreparedStatement pstmt = conn.prepareStatement(SQL)){
     		//System.out.println("Here");
-    		pstmt.setInt(1, limit);
+
+    		pstmt.setString(1, dea);
+    		pstmt.setString(2, ga);
+    		pstmt.setInt(3, limit);
     		ResultSet rs = pstmt.executeQuery();
 
     		while(rs.next()) {
@@ -177,7 +180,12 @@ public class App {
                     				System.out.println("How many flights would you like to see? (Make sure it's less than or equal to 10):");
                     				l = s.nextInt();
                     			}
-                    			app.searchFlights(l);
+                    			System.out.println("Which airport are you departing from?\n- ORD\n- IAD");
+                    			String dea = s.next();
+                    			System.out.println("Which airport are you going to?\n- ORD\n- IAD");
+                    			String ga = s.next();
+
+                    			app.searchFlights(l,dea,ga);
 
                     		}else {
                     			System.out.println("No? Alright, your loss.");
