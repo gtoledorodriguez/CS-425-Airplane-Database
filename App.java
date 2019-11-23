@@ -53,9 +53,32 @@ public class App {
         }
 		return interval;
     }
-    public String searchFlights(int limit, String dea, String ga){
+
+    public void getPrice(String cA, int cFn, Date cFd){
+    	String SQL = "Select ec_price,fc_price, ec_price+fc_price as total_price from price where airline_id = ? and flight_num = ? and f_date = ?";
+    	try(Connection conn = this.connect(); PreparedStatement pstmt = conn.prepareStatement(SQL)){
+    		//System.out.println("Here");
+    		pstmt.setString(1, cA);
+    		//System.out.println("There");
+    		pstmt.setInt(2, cFn);
+    		//System.out.println("Everywhere");
+    		pstmt.setDate(3, cFd);
+    		ResultSet rs = pstmt.executeQuery();
+
+    		while(rs.next()) {
+    			//System.out.println("Error?");
+    			System.out.println("Economic Seat Price: "+rs.getInt("ec_price"));
+    			System.out.println("First Class Seat Price: "+rs.getInt("fc_price"));
+    			System.out.println("Total Price (Ec. Price + Fc. Price): "+rs.getInt("total_price"));
+    		}
+    	} catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void searchFlights(int limit, String dea, String ga){
     	String SQL = "SELECT * from Flight WHERE depart_airport = ? and dest_airport = ? Limit ?";
-    	String interval = "";
+
     	try(Connection conn = this.connect(); PreparedStatement pstmt = conn.prepareStatement(SQL)){
     		//System.out.println("Here");
 
@@ -66,7 +89,7 @@ public class App {
 
     		while(rs.next()) {
     			//System.out.println("Error?");
-    			String str = "\n======================================";
+    			String str = "\n=======================================================";
 
     			str = str + "\nAirline: " + rs.getString("airline_id");
     			str = str + "\nFlight No.: " + rs.getInt("flight_num");
@@ -80,12 +103,12 @@ public class App {
 
     			System.out.println(str);
     			duration(rs.getString("airline_id"), rs.getInt("flight_num"), rs.getDate("f_date"));
-    			System.out.println("======================================");
+    			getPrice(rs.getString("airline_id"), rs.getInt("flight_num"), rs.getDate("f_date"));
+    			System.out.println("=======================================================");
     		}
     	} catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-		return interval;
     }
 
 
