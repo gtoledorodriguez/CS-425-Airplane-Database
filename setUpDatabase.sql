@@ -21,6 +21,11 @@ CREATE ROLE admin WITH
 /*Copy and paste DDL*/
 
 /*Insert values*/
+Insert into Airport
+VALUES
+("ORD", "O'Hare International Airport", "USA", "IL"),
+("IAD", "Dulles International Airport", "USA", "VA");
+
 Insert into airline
 VALUES
 ('AA', 'American Airlines', 'USA');
