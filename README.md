@@ -8,13 +8,13 @@
 ### Gladys:
 #### In charge of Airline, Flight, and Price SQL script, App. Req. 4.3 and 4.3.1
 - Able to connect to database and do a simple query.
-- Will continue to make queries for the methods we need, mostly pertaining to Search By Flights
-- Make functions/procedures
+- Work on GUI
+
 - Finished Duration function
 - Finished Flight function
 - Finished Return Flight
-- Need to sort by Duration
-- Need to sort by Price
+- Finished sort by Duration
+- Finished sort by Price
 
 ### Nasna:
 #### In charge of Booking, and Milege Program SQL script, App. Req. 4.4 and 4.5
