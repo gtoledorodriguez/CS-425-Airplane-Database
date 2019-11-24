@@ -12,6 +12,8 @@ import javax.swing.JButton;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class GUIApp {
 
@@ -45,7 +47,7 @@ public class GUIApp {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 456, 514);
+		frame.setBounds(100, 100, 457, 516);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -56,28 +58,34 @@ public class GUIApp {
 		frame.getContentPane().add(lblAirlineFlighBooking);
 		
 		JButton btnNewButton = new JButton("Registration");
-		btnNewButton.setBounds(145, 154, 119, 41);
+		btnNewButton.setBounds(125, 108, 182, 41);
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		frame.getContentPane().add(btnNewButton);
 		
-		JButton button = new JButton("Registration");
-		button.setBounds(145, 217, 119, 41);
-		button.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		frame.getContentPane().add(button);
+		JButton btnPaymentaddress = new JButton("Payment/Address");
+		btnPaymentaddress.setBounds(125, 171, 182, 41);
+		btnPaymentaddress.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		frame.getContentPane().add(btnPaymentaddress);
 		
-		JButton button_1 = new JButton("Registration");
-		button_1.setBounds(145, 283, 119, 41);
-		button_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		frame.getContentPane().add(button_1);
+		JButton btnFlightConnections = new JButton("Flight Connections");
+		btnFlightConnections.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FlightConnections flightCs = new FlightConnections();
+				flightCs.NewScreen();
+			}
+		});
+		btnFlightConnections.setBounds(125, 237, 182, 41);
+		btnFlightConnections.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		frame.getContentPane().add(btnFlightConnections);
 		
-		JButton button_2 = new JButton("Registration");
-		button_2.setBounds(145, 348, 119, 41);
-		button_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		frame.getContentPane().add(button_2);
+		JButton btnBookFlights = new JButton("Book Flight(s)");
+		btnBookFlights.setBounds(125, 302, 182, 41);
+		btnBookFlights.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		frame.getContentPane().add(btnBookFlights);
 		
-		JButton button_3 = new JButton("Registration");
-		button_3.setBounds(145, 415, 119, 41);
-		button_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		frame.getContentPane().add(button_3);
+		JButton btnManageFlights = new JButton("Manage Flights");
+		btnManageFlights.setBounds(125, 369, 182, 41);
+		btnManageFlights.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		frame.getContentPane().add(btnManageFlights);
 	}
 }
