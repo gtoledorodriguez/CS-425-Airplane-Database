@@ -238,10 +238,27 @@ LANGUAGE 'plpgsql'
 
 AS $BODY$
 BEGIN
+
+	delete from creditcard
+	where cc_number in (select cc_number from Billing where street_number = snum and street_name = sname and apt_number = apt_num and city = _city and state = _state and zipcode = zcode);
+
 	delete from lives
 	where email_id = eid and street_number = snum and street_name = sname and apt_number = apt_num and city = _city and state = _state and zipcode = zcode;
 
 	delete from Address
 	where street_number = snum and street_name = sname and apt_number = apt_num and city = _city and state = _state and zipcode = zcode;
+
+END;
+$BODY$;
+
+CREATE OR REPLACE PROCEDURE public.deletecc(
+	cc_num bigint)
+LANGUAGE 'plpgsql'
+
+AS $BODY$
+BEGIN
+	delete from CreditCard
+	where cc_number = cc_num;
+
 END;
 $BODY$;
