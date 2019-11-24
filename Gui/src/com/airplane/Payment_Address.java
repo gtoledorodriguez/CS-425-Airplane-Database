@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Payment_Address {
 
@@ -43,6 +45,12 @@ public class Payment_Address {
 		frame.getContentPane().setLayout(null);
 		
 		JButton btnMainMenu = new JButton("Main Menu");
+		btnMainMenu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GUIApp ga = new GUIApp();
+				ga.NewScreen();
+			}
+		});
 		btnMainMenu.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnMainMenu.setBounds(233, 390, 134, 50);
 		frame.getContentPane().add(btnMainMenu);

@@ -3,6 +3,10 @@ package com.airplane;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JButton;
+import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FlightConnections {
 
@@ -36,8 +40,20 @@ public class FlightConnections {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 638, 519);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JButton btnMainMenu = new JButton("Main Menu");
+		btnMainMenu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GUIApp ga = new GUIApp();
+				ga.NewScreen();
+			}
+		});
+		btnMainMenu.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnMainMenu.setBounds(239, 407, 146, 52);
+		frame.getContentPane().add(btnMainMenu);
 	}
 
 	public void NewScreen() {
@@ -53,5 +69,4 @@ public class FlightConnections {
 		});
 		
 	}
-
 }
