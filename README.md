@@ -3,7 +3,15 @@
 
 ### Omesh:
 #### In charge of Customer, Airport sql script, App. Req. 4.1 and 4.2
-- Make functions/procedures
+- Finished Adding Customer functions
+- Finished Adding Address functions
+- Finished Adding CreditCard functions
+- Finished Update CreditCard functions
+- Finished Update Address functions
+- Finished Remove Address functions
+- Finished Remove CreditCard functions
+
+** All Functions satisfy the requirements mentioned in the Project Requirements **
 
 ### Gladys:
 #### In charge of Airline, Flight, and Price SQL script, App. Req. 4.3 and 4.3.1
