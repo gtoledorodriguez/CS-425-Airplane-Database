@@ -58,11 +58,23 @@ public class GUIApp {
 		frame.getContentPane().add(lblAirlineFlighBooking);
 		
 		JButton btnNewButton = new JButton("Registration");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Registration r = new Registration();
+				r.NewScreen();
+			}
+		});
 		btnNewButton.setBounds(125, 108, 182, 41);
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnPaymentaddress = new JButton("Payment/Address");
+		btnPaymentaddress.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Payment_Address pa = new Payment_Address();
+				pa.NewScreen();
+			}
+		});
 		btnPaymentaddress.setBounds(125, 171, 182, 41);
 		btnPaymentaddress.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		frame.getContentPane().add(btnPaymentaddress);
@@ -79,13 +91,38 @@ public class GUIApp {
 		frame.getContentPane().add(btnFlightConnections);
 		
 		JButton btnBookFlights = new JButton("Book Flight(s)");
+		btnBookFlights.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BookFlights bf = new BookFlights();
+				bf.NewScreen();
+			}
+		});
 		btnBookFlights.setBounds(125, 302, 182, 41);
 		btnBookFlights.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		frame.getContentPane().add(btnBookFlights);
 		
 		JButton btnManageFlights = new JButton("Manage Flights");
+		btnManageFlights.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ManageFlights mf = new ManageFlights();
+				mf.NewScreen();
+			}
+		});
 		btnManageFlights.setBounds(125, 369, 182, 41);
 		btnManageFlights.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		frame.getContentPane().add(btnManageFlights);
+	}
+
+	public void NewScreen() {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					GUIApp window = new GUIApp();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 }

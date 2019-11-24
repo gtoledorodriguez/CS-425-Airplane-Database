@@ -3,12 +3,14 @@ package com.airplane;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.JButton;
+import javax.swing.JTextPane;
+import java.awt.BorderLayout;
 import java.awt.Font;
+import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class FlightConnections {
+public class Registration {
 
 	private JFrame frame;
 
@@ -19,7 +21,7 @@ public class FlightConnections {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FlightConnections window = new FlightConnections();
+					Registration window = new Registration();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -31,7 +33,7 @@ public class FlightConnections {
 	/**
 	 * Create the application.
 	 */
-	public FlightConnections() {
+	public Registration() {
 		initialize();
 	}
 
@@ -40,33 +42,38 @@ public class FlightConnections {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 638, 519);
+		frame.setBounds(100, 100, 621, 577);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JButton btnMainMenu = new JButton("Main Menu");
-		btnMainMenu.addActionListener(new ActionListener() {
+		JTextPane txtpnToBeImplemented = new JTextPane();
+		txtpnToBeImplemented.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		txtpnToBeImplemented.setText("To Be Implemented");
+		txtpnToBeImplemented.setBounds(203, 50, 173, 34);
+		frame.getContentPane().add(txtpnToBeImplemented);
+		
+		JButton btnNewButton = new JButton("Main Menu");
+		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				GUIApp ga = new GUIApp();
 				ga.NewScreen();
 			}
 		});
-		btnMainMenu.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnMainMenu.setBounds(239, 407, 146, 52);
-		frame.getContentPane().add(btnMainMenu);
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnNewButton.setBounds(237, 438, 149, 46);
+		frame.getContentPane().add(btnNewButton);
 	}
 
 	public void NewScreen() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FlightConnections window = new FlightConnections();
+					Registration window = new Registration();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
-		
 	}
 }

@@ -8,7 +8,7 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class FlightConnections {
+public class ManageFlights {
 
 	private JFrame frame;
 
@@ -19,7 +19,7 @@ public class FlightConnections {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FlightConnections window = new FlightConnections();
+					ManageFlights window = new ManageFlights();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -31,7 +31,7 @@ public class FlightConnections {
 	/**
 	 * Create the application.
 	 */
-	public FlightConnections() {
+	public ManageFlights() {
 		initialize();
 	}
 
@@ -40,7 +40,7 @@ public class FlightConnections {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 638, 519);
+		frame.setBounds(100, 100, 638, 507);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -52,7 +52,7 @@ public class FlightConnections {
 			}
 		});
 		btnMainMenu.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnMainMenu.setBounds(239, 407, 146, 52);
+		btnMainMenu.setBounds(246, 406, 128, 54);
 		frame.getContentPane().add(btnMainMenu);
 	}
 
@@ -60,13 +60,13 @@ public class FlightConnections {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FlightConnections window = new FlightConnections();
+					ManageFlights window = new ManageFlights();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
-		
 	}
+
 }
