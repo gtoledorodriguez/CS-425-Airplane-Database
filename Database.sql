@@ -59,7 +59,7 @@ CREATE TABLE Billing (
 	state VARCHAR(20) NOT NULL,
 	zipcode VARCHAR(9) NOT NULL,
 	PRIMARY KEY (cc_number),
-	FOREIGN KEY (cc_number) REFERENCES CreditCard,
+	FOREIGN KEY (cc_number) REFERENCES CreditCard ON DELETE CASCADE,
 	FOREIGN KEY (street_number, street_name, city, state, zipcode) REFERENCES Address
 );
 
@@ -72,7 +72,7 @@ CREATE TABLE Lives (
 	state VARCHAR(20) NOT NULL,
 	zipcode VARCHAR(9) NOT NULL,
 	PRIMARY KEY (email_id, street_number, street_name, city, state, zipcode),
-	FOREIGN KEY (email_id) REFERENCES Customer,
+	FOREIGN KEY (email_id) REFERENCES Customer ON DELETE CASCADE,
 	FOREIGN KEY (street_number, street_name, city, state, zipcode) REFERENCES Address
 );
 
@@ -80,16 +80,16 @@ CREATE TABLE HasCC (
 	email_id VARCHAR(25),
 	cc_number BIGINT,
 	PRIMARY KEY (email_id, cc_number),
-	FOREIGN KEY (email_id) REFERENCES Customer,
-	FOREIGN KEY (cc_number) REFERENCES CreditCard
+	FOREIGN KEY (email_id) REFERENCES Customer ON DELETE CASCADE,
+	FOREIGN KEY (cc_number) REFERENCES CreditCard ON DELETE CASCADE
 );
 
 CREATE TABLE HomeAirport (
 	email_id VARCHAR(25),
 	airport_id CHAR(3) NOT NULL,
 	PRIMARY KEY (email_id),
-	FOREIGN KEY (email_id) REFERENCES Customer,
-	FOREIGN KEY (airport_id) REFERENCES Airport
+	FOREIGN KEY (email_id) REFERENCES Customer ON DELETE CASCADE,
+	FOREIGN KEY (airport_id) REFERENCES Airport ON DELETE CASCADE
 );
 
 /*Gladys*/
