@@ -3,13 +3,14 @@
 
 ### Omesh:
 #### In charge of Customer, Airport sql script, App. Req. 4.1 and 4.2
-- Finished Adding Customer functions
-- Finished Adding Address functions
-- Finished Adding CreditCard functions
-- Finished Update CreditCard functions
-- Finished Update Address functions
-- Finished Remove Address functions
-- Finished Remove CreditCard functions
+- Finished Adding Customer functions in Postgresql
+- Finished Adding Address functions in Postgresql
+- Finished Adding CreditCard functions in Postgresql
+- Finished Update CreditCard functions in Postgresql
+- Finished Update Address functions in Postgresql
+- Finished Remove Address functions in Postgresql
+- Finished Remove CreditCard functions in Postgresql
+- Linked above Postgres Functions with java file
 
 ** All Functions satisfy the requirements mentioned in the Project Requirements **
 
