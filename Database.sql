@@ -3,14 +3,12 @@
 /*Customer*/
 CREATE TABLE Customer (
 	email_id VARCHAR(25),
-	password VARCHAR(16) NOT NULL,
+	password VARCHAR(16),
 	age INT NOT NULL CHECK (age >=0),
 	first_name VARCHAR(15) NOT NULL,
 	middle_name VARCHAR(15),
 	last_name VARCHAR(25) NOT NULL,
-	airport_id CHAR(3) NOT NULL,
-	PRIMARY KEY (email_id),
-	FOREIGN KEY (airport_id) REFERENCES Airport(airport_id)
+	PRIMARY KEY (email_id)
 );
 
 CREATE INDEX Customer_index ON Customer(email_id, last_name, first_name);
