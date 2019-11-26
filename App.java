@@ -184,7 +184,7 @@ public class App {
 
 
     public void searchFlights(int limit, String dea, String ga){
-    	String SQL = "SELECT * from Flight WHERE depart_airport = ? and dest_airport = ? Limit ?";
+    	String SQL = "SELECT * from Flight WHERE depart_airport = ? and dest_airport = ? and (num_ec_seats != 0 or num_fc_seats != 0) Limit ?";
 
     	try(Connection conn = this.connect(); PreparedStatement pstmt = conn.prepareStatement(SQL)){
     		//System.out.println("Here");
