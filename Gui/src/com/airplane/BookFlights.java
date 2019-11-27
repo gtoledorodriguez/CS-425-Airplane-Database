@@ -6,6 +6,10 @@ import javax.swing.JFrame;
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Scanner;
 import java.awt.event.ActionEvent;
 
 public class BookFlights {
@@ -15,6 +19,7 @@ public class BookFlights {
 	/**
 	 * Launch the application.
 	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {

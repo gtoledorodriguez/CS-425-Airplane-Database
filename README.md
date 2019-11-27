@@ -27,7 +27,13 @@
 
 ### Nasna:
 #### In charge of Booking, and Milege Program SQL script, App. Req. 4.4 and 4.5
-- Make functions/procedures
+
+- Finished BookFlight Function
+- Finished CancelFlight Function
+- Finished EconomicFinal Function
+- Finished MileageProgram Function
+- Finished MileageProgram Update Function
+
 
 ## Project: Airplane Database
 Create a Airplane Database with three group members.
