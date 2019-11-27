@@ -18,8 +18,7 @@
 ### Gladys:
 #### In charge of Airline, Flight, and Price SQL script, App. Req. 4.3 and 4.3.1
 - Able to connect to database and do a simple query.
-- Work on GUI
-
+- Finished GUI for Search Connections
 - Finished Duration function
 - Finished Flight function
 - Finished Return Flight
