@@ -59,23 +59,33 @@ public class GUIApp {
 		HomePage.getContentPane().add(btnProfile);
 		
 		JButton btnSearchFlight = new JButton("Search Flight");
-		btnSearchFlight.setBounds(238, 148, 207, 55);
+		btnSearchFlight.setBounds(238, 134, 207, 55);
 		btnSearchFlight.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				FlightConnections fc = new FlightConnections();
+				fc.NewScreen();
 			}
 		});
 		HomePage.getContentPane().add(btnSearchFlight);
 		
 		JButton btnbookFlight = new JButton("BookFlight");
-		btnbookFlight.setBounds(238, 240, 207, 55);
+		btnbookFlight.setBounds(238, 199, 207, 55);
 		btnbookFlight.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				BookFlights bf = new BookFlights();
+				bf.NewScreen();
 			}
 		});
 		HomePage.getContentPane().add(btnbookFlight);
 		
 		JButton btnManageFlights = new JButton("Manage Flights");
-		btnManageFlights.setBounds(238, 329, 207, 55);
+		btnManageFlights.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ManageFlights mf = new ManageFlights();
+				mf.NewScreen();
+			}
+		});
+		btnManageFlights.setBounds(238, 264, 207, 55);
 		HomePage.getContentPane().add(btnManageFlights);
 		
 		JButton button = new JButton("Log Off");
@@ -88,10 +98,22 @@ public class GUIApp {
 		button.setBounds(238, 426, 207, 55);
 		HomePage.getContentPane().add(button);
 		
+		JButton btnMileageProgram = new JButton("Mileage Program");
+		btnMileageProgram.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MileageProgram mp = new MileageProgram();
+				mp.NewScreen();
+			}
+		});
+		btnMileageProgram.setBounds(238, 336, 207, 55);
+		HomePage.getContentPane().add(btnMileageProgram);
+		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon("/Users/Omesh/Downloads/flight.jpg"));
 		lblNewLabel.setBounds(0, 0, 750, 578);
 		HomePage.getContentPane().add(lblNewLabel);
+		
+		
 		
 		
 		
