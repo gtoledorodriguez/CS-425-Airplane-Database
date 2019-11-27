@@ -11,6 +11,7 @@
 - Finished Remove Address functions in Postgresql
 - Finished Remove CreditCard functions in Postgresql
 - Linked above Postgres Functions with java file
+- Created GUI for SignIn Page, SignUp page, Registration and Profile Pages.
 
 ** All Functions satisfy the requirements mentioned in the Project Requirements **
 

@@ -364,7 +364,7 @@ public class App {
     	try(Connection conn = this.connect();
     		PreparedStatement mystmt = conn.prepareStatement(SQL)){
     		ResultSet rs = mystmt.executeQuery();
-    		System.out.println("Bonus Miles : "+rs.getInt("bonus_miles"));
+    		
     		miles = rs.getInt("bonus_miles");
     	} catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -373,9 +373,13 @@ public class App {
     }
    // int i = this.MilegaeProgram(...);
    // mileageprogramupdate(11-11-11, 1, A, gto, i)
-    public void MileageProgramUpdate(Date f_date, int flight_num, String airline_id, String email_id,int bonus_miles){
-    	String SQL1 = "INSERT into MileageProgram(email_id, airline_id, bonus miles) "
+   public void MileageProgramUpdate(Date f_date, int flight_num, String airline_id, String email_id,int bonus_miles){
+    	String SQL1 = "INSERT into MileageProgram(email_id, airline_id, bonus_miles) "
     			+ "VALUES(?,?,?)";
+    	
+    	String SQL2 = "SELECT SUM(bonus_miles)"
+				+ "FROM MileageProgram";
+    	
     	try(Connection conn = this.connect();
     		PreparedStatement mystmt = conn.prepareStatement(SQL1)){
     		
@@ -384,14 +388,22 @@ public class App {
     		mystmt.setString(1, email_id);
     		
     		mystmt.setInt(3, bonus_miles);
-    	
     		
+    	
+    	try(PreparedStatement mystmt3 = conn.prepareStatement(SQL2)){
+    	    	
+    		ResultSet rs1 = mystmt3.executeQuery();
+    		System.out.println("Bonus Miles : "+ rs1.getInt("bonus_mile"));
+    	  
     	} catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+
+    	}catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     	
-    	
-    }
+}	
 
 	public static String Eopts()
     {
