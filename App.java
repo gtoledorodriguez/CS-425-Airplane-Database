@@ -7,7 +7,29 @@ import java.util.*;
 
 public class App {
 
+	private final String url = "jdbc:postgresql://localhost/projtest2";
+    String user = "";
+    String password = "";
+    public Connection connect() throws SQLException{
+    	Connection conn = null;
+    	Scanner u = new Scanner(System.in);
+    	Scanner p = new Scanner(System.in);
+    	/*
+    	System.out.println("Username: ");
+    	user = u.next();
+    	System.out.println(" ");
 
+		System.out.println("Password: ");
+		password = p.next();
+    	System.out.println(" ");
+    	*/
+    	user = "admin";
+    	password = "admin";
+    	conn = DriverManager.getConnection(url, user, password);
+    	//System.out.println("Connected to the PostgreSQL server successfully.");
+
+        return conn;
+    }
 
     public void duration(String cA, int cFn, Date cFd){
     	String SQL = "SELECT arrival_time-depart_time AS duration FROM flight where flight.airline_id = ? and flight.flight_num = ? and flight.f_date = ?";
@@ -50,6 +72,95 @@ public class App {
             System.out.println(e.getMessage());
         }
     }
+    /*Sorting use this sql Select *,arrival_time-depart_time as duration from flight natural join price order by duration desc;*/
+
+    public void sortByPrice(int limit, String dea, String ga, String ad){ //Duration - H = Highest, L = Lowest
+    	String SQL = "";
+    	if(ad.compareToIgnoreCase("L")==0) {
+    		SQL = "Select *,arrival_time-depart_time as duration, ec_price+fc_price as total_price from flight natural join price where depart_airport = ? and dest_airport = ? order by price asc Limit ?";
+    	}else if(ad.compareToIgnoreCase("H")==0) {
+    		SQL = "Select *,arrival_time-depart_time as duration, ec_price+fc_price as total_price from flight natural join price where depart_airport = ? and dest_airport = ? order by price desc Limit ?";
+    	}else {//Should never come here, will output nothing
+    		SQL = "Select *,arrival_time-depart_time as duration from flight natural join price where depart_airport = ? and dest_airport = ? Limit ?";
+    	}
+
+
+    	try(Connection conn = this.connect(); PreparedStatement pstmt = conn.prepareStatement(SQL)){
+    		//System.out.println("Here");
+
+    		pstmt.setString(1, dea);
+    		pstmt.setString(2, ga);
+    		pstmt.setInt(3, limit);
+    		ResultSet rs = pstmt.executeQuery();
+
+    		while(rs.next()) {
+    			//System.out.println("Error?");
+    			String str = "\n=======================================================";
+
+    			str = str + "\nAirline: " + rs.getString("airline_id");
+    			str = str + "\nFlight No.: " + rs.getInt("flight_num");
+    			str = str + "\nFlight Date: " + rs.getDate("f_date");
+    			str = str + "\nDepart Airport: " + rs.getString("depart_airport");
+    			str = str + "\nDestination Airport: " + rs.getString("dest_airport");
+    			str = str + "\nDeparture: " + rs.getTime("depart_time");
+    			str = str + "\nArrival: " + rs.getTime("arrival_time");
+    			str = str + "\nEconomic Seats: " + rs.getInt("num_ec_seats");
+    			str = str + "\nFirst Class Seats: " + rs.getInt("num_fc_seats");
+    			str = str + "\nFlight Duration (HH:MM:SS) : "+rs.getString("duration");
+    			str = str + "\nEconomic Seat Price: "+rs.getInt("ec_price");
+    			str = str + "\nFirst Class Seat Price: "+rs.getInt("fc_price");
+    			str = str + "\nTotal Price (Ec. Price + Fc. Price): "+rs.getInt("total_price");
+
+    			System.out.println(str);
+    			System.out.println("=======================================================");
+    		}
+    	} catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void sortByDuration(int limit, String dea, String ga, String ad){ //Duration - S = shortest, L = Longest
+    	String SQL = "";
+    	if(ad.compareToIgnoreCase("S")==0) {
+    		SQL = "Select *,arrival_time-depart_time as duration from flight natural join price where depart_airport = ? and dest_airport = ? order by duration asc Limit ?";
+    	}else if(ad.compareToIgnoreCase("L")==0) {
+    		SQL = "Select *,arrival_time-depart_time as duration from flight natural join price where depart_airport = ? and dest_airport = ? order by duration desc Limit ?";
+    	}else {//Should never come here, will output nothing
+    		SQL = "Select *,arrival_time-depart_time as duration from flight natural join price where depart_airport = ? and dest_airport = ? Limit ?";
+    	}
+
+
+    	try(Connection conn = this.connect(); PreparedStatement pstmt = conn.prepareStatement(SQL)){
+    		//System.out.println("Here");
+
+    		pstmt.setString(1, dea);
+    		pstmt.setString(2, ga);
+    		pstmt.setInt(3, limit);
+    		ResultSet rs = pstmt.executeQuery();
+
+    		while(rs.next()) {
+    			//System.out.println("Error?");
+    			String str = "\n=======================================================";
+
+    			str = str + "\nAirline: " + rs.getString("airline_id");
+    			str = str + "\nFlight No.: " + rs.getInt("flight_num");
+    			str = str + "\nFlight Date: " + rs.getDate("f_date");
+    			str = str + "\nDepart Airport: " + rs.getString("depart_airport");
+    			str = str + "\nDestination Airport: " + rs.getString("dest_airport");
+    			str = str + "\nDeparture: " + rs.getTime("depart_time");
+    			str = str + "\nArrival: " + rs.getTime("arrival_time");
+    			str = str + "\nEconomic Seats: " + rs.getInt("num_ec_seats");
+    			str = str + "\nFirst Class Seats: " + rs.getInt("num_fc_seats");
+    			str = str + "\nFlight Duration (HH:MM:SS) : "+rs.getString("duration");
+
+    			System.out.println(str);
+    			getPrice(rs.getString("airline_id"), rs.getInt("flight_num"), rs.getDate("f_date"));
+    			System.out.println("=======================================================");
+    		}
+    	} catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
     public void getAirport(){
     	String SQL = "Select airport_id, name from airport";
@@ -70,8 +181,9 @@ public class App {
         }
     }
 
+
     public void searchFlights(int limit, String dea, String ga){
-    	String SQL = "SELECT * from Flight WHERE depart_airport = ? and dest_airport = ? Limit ?";
+    	String SQL = "SELECT * from Flight WHERE depart_airport = ? and dest_airport = ? and (num_ec_seats != 0 or num_fc_seats != 0) Limit ?";
 
     	try(Connection conn = this.connect(); PreparedStatement pstmt = conn.prepareStatement(SQL)){
     		//System.out.println("Here");
