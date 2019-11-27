@@ -21,6 +21,113 @@ CREATE ROLE admin WITH
 /*Copy and paste DDL*/
 
 /*Insert values*/
+INSERT into airport
+values ('DFW', 'Dallas/Fort Worth International Airport', 'USA', 'TX'),
+('DIA', 'Denver International Airport', 'USA', 'CO'),
+('HNL', 'Daniel K Inouye International Airport', 'USA', 'HI'),
+('TUS', 'Tucson International Airport', 'USA', 'AZ'),
+('FAT', 'Fresno Yosemite International Airport', 'USA', 'AZ'),
+('AAI', 'Airdrie Airodome International Airport', 'Canada', 'AL')
+;
+
+
+insert into customer
+values ('bwayne', 'batcave', 32, 'Bruce','', 'Wayne'),
+('dgrayson', 'nwing', 27, 'Richard','', 'Grayson'),
+('jtodd', 'rhood', 22, 'Jason','', 'Todd'),
+('tdrake', 'rrobin', 18, 'Timothy','', 'Drake'),
+('bgordon', 'batgirl', 22, 'Barbara','', 'Gordon'),
+('skyle', 'catwoman', 31, 'Selina','', 'Kyle'),
+('hquinn', 'mallot', 26, 'Harleen','', 'Quinn'),
+('canders', 'starfire', 26, 'Cory','', 'Anders')
+;
+
+
+insert into address
+values ('900', 'Wayne Dr','', 'Chicago', 'Illinois', '60601'),
+('301S770', 'Milwaukee Av','', 'Chicago', 'Illinois', '60608'),
+('54W110', 'Circus St', '1R', 'Dallas', 'Texas', '75019'),
+('3201', 'Washtenaw Av','', 'Denver', 'Colorado', '80217'),
+('600', 'Arthur Ln','', 'Denver', 'Colorado', '80256'),
+('99', 'Oligret Ctr','', 'Grand Junction', 'Colorado', '81503'),
+('866', 'Simba St','', 'Honolulu', 'Hawaii', '96853'),
+('202', 'Kerope Ln','', 'Hilo', 'Hawaii', '96721'),
+('552', 'Shotoba Av','', 'Kahului', 'Hawaii', '96793'),
+('40W622', 'Oracle Blvd','', 'Tucson', 'Arizona', '85719'),
+('55N62', 'Cameron Ave','', 'Fresno', 'California', '93715'),
+('215W62', 'Proctor Av','', 'Airdrie', 'Alberta', 'T4A0B1')
+;
+
+
+
+insert into creditcard
+values (9822085925411040, 598, 04, 2022),
+(9371016697000001, 602, 01, 2023),
+(9371016697000002, 758, 07, 2024),
+(9371016697000003, 717, 06, 2025),
+(9371016697000004, 751, 02, 2024),
+(9371016697000005, 100, 11, 2023),
+(9371016697000006, 509, 3, 2029),
+(9371016697000007, 141, 5, 2025),
+(9371016697000008, 811, 1, 2022)
+;
+
+
+
+insert into billing
+values (9822085925411040, '301S770', 'Milwaukee Av','', 'Chicago', 'Illinois', '60608'),
+(9371016697000001, '54W110', 'Circus St', '1R', 'Dallas', 'Texas', '75019'),
+(9371016697000002, '600', 'Arthur Ln','', 'Denver', 'Colorado', '80256'),
+(9371016697000003, '202', 'Kerope Ln','', 'Hilo', 'Hawaii', '96721'),
+(9371016697000004, '552', 'Shotoba Av','', 'Kahului', 'Hawaii', '96793'),
+(9371016697000005, '40W622', 'Oracle Blvd','', 'Tucson', 'Arizona', '85719'),
+(9371016697000006, '55N62', 'Cameron Ave','', 'Fresno', 'California', '93715'),
+(9371016697000007, '215W62', 'Proctor Av','', 'Airdrie', 'Alberta', 'T4A0B1'),
+(9371016697000008, '54W110', 'Circus St', '1R', 'Dallas', 'Texas', '75019')
+;
+
+
+
+insert into lives
+values ('bwayne', '900', 'Wayne Dr','', 'Chicago', 'Illinois', '60601'),
+('bwayne', '301S770', 'Milwaukee Av','', 'Chicago', 'Illinois', '60608'),
+('dgrayson', '54W110', 'Circus St', '1R', 'Dallas', 'Texas', '75019'),
+('jtodd', '3201', 'Washtenaw Av','', 'Denver', 'Colorado', '80217'),
+('jtodd', '600', 'Arthur Ln','', 'Denver', 'Colorado', '80256'),
+('jtodd', '99', 'Oligret Ctr','', 'Grand Junction', 'Colorado', '81503'),
+('tdrake','866', 'Simba St','', 'Honolulu', 'Hawaii', '96853'),
+('tdrake', '202', 'Kerope Ln','', 'Hilo', 'Hawaii', '96721'),
+('tdrake', '552', 'Shotoba Av','', 'Kahului', 'Hawaii', '96793'),
+('bgordon', '40W622', 'Oracle Blvd','', 'Tucson', 'Arizona', '85719'),
+('skyle', '55N62', 'Cameron Ave','', 'Fresno', 'California', '93715'),
+('hquinn', '215W62', 'Proctor Av','', 'Airdrie', 'Alberta', 'T4A0B1'),
+('canders', '54W110', 'Circus St', '1R', 'Dallas', 'Texas', '75019')
+;
+
+insert into hascc
+values ('bwayne', 9822085925411040),
+('dgrayson', 9371016697000001),
+('jtodd', 9371016697000002),
+('tdrake', 9371016697000003),
+('tdrake', 9371016697000004),
+('bgordon', 9371016697000005),
+('skyle', 9371016697000006),
+('hquinn', 9371016697000007),
+('canders', 9371016697000008)
+;
+
+
+insert into homeairport
+values('bwayne', 'ORD'),
+('dgrayson', 'DFW'),
+('jtodd', 'DIA'),
+('tdrake', 'HNL'),
+('bgordon', 'TUS'),
+('skyle', 'FAT'),
+('hquinn', 'AAI'),
+('canders', 'DFW')
+;
+
 Insert into Airport
 VALUES
 ("ORD", "O'Hare International Airport", "USA", "IL"),
