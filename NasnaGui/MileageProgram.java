@@ -17,11 +17,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextArea;
 
 public class MileageProgram {
 
 	private JFrame frame;
-	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -129,12 +129,6 @@ public class MileageProgram {
 		lblTotalBonusMiles.setBounds(61, 79, 124, 33);
 		frame.getContentPane().add(lblTotalBonusMiles);
 		
-		textField = new JTextField();
-		textField.setEditable(false);
-		textField.setBounds(185, 82, 130, 26);
-		frame.getContentPane().add(textField);
-		textField.setText(this.setMileageProgram());
-		
 		JButton btnBack = new JButton("Main Menu");
 		btnBack.setBounds(0, 0, 117, 33);
 		btnBack.addActionListener(new ActionListener() {
@@ -163,9 +157,15 @@ public class MileageProgram {
 		});
 		btnNewButton.setBounds(319, 82, 83, 29);
 		frame.getContentPane().add(btnNewButton);
+		
+		JTextArea textArea = new JTextArea();
+		textArea.setEditable(false);
+		textArea.setBounds(180, 79, 131, 33);
+		frame.getContentPane().add(textArea);
+		textArea.setText(this.setMileageProgram());
 	}
 
-	private int setMileageProgram() {
+	private String setMileageProgram() {
 		String SQL = "SELECT extract(hour from arrival_time - depart_time)*60 as bonus_miles FROM Flight"
     			+ "WHERE airline_id ='?'" 
     			+ "and flight_num = '?'"  
@@ -175,11 +175,11 @@ public class MileageProgram {
 		String SQL2 = "SELECT SUM(bonus_miles)"
 				+ "FROM MileageProgram";
 		
-    	int miles =0;
+    	String miles ="";
     	try(Connection conn = this.connect();
     		PreparedStatement mystmt = conn.prepareStatement(SQL)){
     		ResultSet rs = mystmt.executeQuery();
- 		miles = rs.getInt("bonus_miles");
+ 		miles = rs.getString("bonus_miles");
  		
  		try(PreparedStatement mystmt3 = conn.prepareStatement(SQL2)){
 	    	
