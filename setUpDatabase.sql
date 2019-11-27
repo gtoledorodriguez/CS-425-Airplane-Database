@@ -134,7 +134,7 @@ VALUES
 ("IAD", "Dulles International Airport", "USA", "VA");
 
 Insert into airline
-VALUES
+VALUES  
 ('AA', 'American Airlines', 'USA'),
 ('UA', 'United Airlines', 'USA')
 ;
