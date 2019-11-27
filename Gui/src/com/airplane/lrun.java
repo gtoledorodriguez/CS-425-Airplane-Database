@@ -15,7 +15,7 @@ public class lrun {
 	private final static String url = "jdbc:postgresql://localhost/projtest2";
     static String user = "";
     static String password = "";
-    public Connection connect() throws SQLException{
+    public static Connection connect() throws SQLException{
     	Connection conn = null;
     	/*
     	System.out.println("Username: ");
@@ -35,7 +35,7 @@ public class lrun {
     }
     
     public static void addcustomer(String uname, String pwd, int _age, String f_name, String m_name, String l_name) {
-    	try (Connection c = DriverManager.getConnection(url, user, password);
+    	try (Connection c = connect();
     			CallableStatement addcust1 = c.prepareCall("call addcust(?, ?, ?, ?, ?, ?)")	
     			)
     	{
@@ -53,7 +53,7 @@ public class lrun {
     }
     
     public static void addaddress(String uname, String str_num, String str_name, String ap_num, String l_city, String l_state, String zippcode) {
-    	try (Connection c = DriverManager.getConnection(url, user, password);
+    	try (Connection c = connect();
     			CallableStatement addaddr1 = c.prepareCall("call addaddr(?, ?, ?, ?, ?, ?, ?)")	
     			)
     	{
@@ -72,7 +72,7 @@ public class lrun {
     }
     
     public static void addCredit(long ccnum, Integer CVV, Integer e_month, Integer e_year, String uname, String str_num, String str_name, String ap_num, String l_city, String l_state, String zippcode) {
-    	try (Connection c = DriverManager.getConnection(url, user, password);
+    	try (Connection c = connect();
     			CallableStatement addcred = c.prepareCall("call addcc(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")	
     			)
     	{
@@ -95,7 +95,7 @@ public class lrun {
     }
     
     public static void changeaddress(String uname, String o_str_num, String o_str_name, String o_ap_num, String o_l_city, String o_l_state, String o_zippcode, String n_str_num, String n_str_name, String n_ap_num, String n_l_city, String n_l_state, String n_zippcode) {
-    	try (Connection c = DriverManager.getConnection(url, user, password);
+    	try (Connection c = connect();
     			CallableStatement chgaddr1 = c.prepareCall("call changeaddr(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")	
     			)
     	{
@@ -120,7 +120,7 @@ public class lrun {
     }
     
     public static void changecredit(String uname, long o_ccnum, Integer o_CVV, Integer o_e_month, Integer o_e_year, String o_str_num, String o_str_name, String o_ap_num, String o_l_city, String o_l_state, String o_zippcode, long n_ccnum, Integer n_CVV, Integer n_e_month, Integer n_e_year, String n_str_num, String n_str_name, String n_ap_num, String n_l_city, String n_l_state, String n_zippcode) {
-    	try (Connection c = DriverManager.getConnection(url, user, password);
+    	try (Connection c = connect();
     			CallableStatement chgcred1 = c.prepareCall("call changecc(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")	
     			)
     	{
@@ -153,7 +153,7 @@ public class lrun {
     }
     
     public static void remaddress(String uname, String str_num, String str_name, String ap_num, String l_city, String l_state, String zippcode) {
-    	try (Connection c = DriverManager.getConnection(url, user, password);
+    	try (Connection c = connect();
     			CallableStatement remaddr1 = c.prepareCall("call removeaddr(?, ?, ?, ?, ?, ?, ?)")	
     			)
     	{
@@ -172,7 +172,7 @@ public class lrun {
     }
     
     public static void remCC(long ccnum) {
-    	try (Connection c = DriverManager.getConnection(url, user, password);
+    	try (Connection c = connect();
     			CallableStatement remCC = c.prepareCall("call deleteCC(?)")	
     			)
     	{
@@ -185,7 +185,7 @@ public class lrun {
     }
     
     public static void addhport(String uname, String hport) {
-    	try (Connection c = DriverManager.getConnection(url, user, password);
+    	try (Connection c = connect();
     			CallableStatement addhport1 = c.prepareCall("call addhomeport(?, ?)")	
     			)
     	{
@@ -210,7 +210,7 @@ public class lrun {
     
     public static Boolean signin(String u_name, String p_pswd) {
     	String SQL = "SELECT email_id, password FROM customer where email_id = ? AND password = ?;";
-    	try (Connection c = DriverManager.getConnection(url, user, password);
+    	try (Connection c = connect();
     			PreparedStatement ps = c.prepareStatement(SQL))
     			{
 					Boolean getin = false;
@@ -237,7 +237,7 @@ public class lrun {
     public static String listaddr(String au_name) {
     	String SQL = "SELECT street_number, street_name, apt_number, city, state, zipcode FROM lives where email_id = ?;";
     	String r = "";
-    	try (Connection c = DriverManager.getConnection(url, user, password);
+    	try (Connection c = connect();
     			PreparedStatement ps = c.prepareStatement(SQL))
     			{
     				ps.setString(1, au_name);
@@ -265,7 +265,7 @@ public class lrun {
     public static String listCCinfo(String au_name) {
     	String SQL = "SELECT cc_number, street_number, street_name, apt_number, city, state, zipcode FROM hascc NATURAL JOIN billing where email_id = ?;";
     	String r = "";
-    	try (Connection c = DriverManager.getConnection(url, user, password);
+    	try (Connection c = connect();
     			PreparedStatement ps = c.prepareStatement(SQL))
     			{
     				ps.setString(1, au_name);
