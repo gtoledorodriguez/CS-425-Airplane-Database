@@ -1,23 +1,16 @@
 package com.airplane;
-
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import com.jgoodies.forms.factories.DefaultComponentFactory;
-import java.awt.BorderLayout;
-import java.awt.Font;
-import javax.swing.SwingConstants;
 import javax.swing.JButton;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 
 public class GUIApp {
 
-	private JFrame frame;
+	private JFrame HomePage;
 
 	/**
 	 * Launch the application.
@@ -27,7 +20,7 @@ public class GUIApp {
 			public void run() {
 				try {
 					GUIApp window = new GUIApp();
-					window.frame.setVisible(true);
+					window.HomePage.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -46,83 +39,74 @@ public class GUIApp {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 457, 516);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		HomePage = new JFrame();
+		HomePage.setBounds(100, 100, 750, 600);
+		HomePage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		HomePage.getContentPane().setLayout(null);
 		
-		JLabel lblAirlineFlighBooking = DefaultComponentFactory.getInstance().createTitle("Airline Flight Booking");
-		lblAirlineFlighBooking.setBounds(0, 10, 442, 30);
-		lblAirlineFlighBooking.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAirlineFlighBooking.setFont(new Font("Tahoma", Font.BOLD, 20));
-		frame.getContentPane().add(lblAirlineFlighBooking);
+		JLabel msglbl = new JLabel("Hello " +StartApp.uname.getText() + ",");
+		msglbl.setBounds(32, 22, 131, 16);
+		HomePage.getContentPane().add(msglbl);
 		
-		JButton btnNewButton = new JButton("Registration");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnProfile = new JButton("Profile");
+		btnProfile.setBounds(238, 69, 207, 55);
+		btnProfile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Registration r = new Registration();
-				r.NewScreen();
+				homeport hp = new homeport();
+				hp.NewScreen();
 			}
 		});
-		btnNewButton.setBounds(125, 108, 182, 41);
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		frame.getContentPane().add(btnNewButton);
+		HomePage.getContentPane().add(btnProfile);
 		
-		JButton btnPaymentaddress = new JButton("Payment/Address");
-		btnPaymentaddress.addActionListener(new ActionListener() {
+		JButton btnSearchFlight = new JButton("Search Flight");
+		btnSearchFlight.setBounds(238, 148, 207, 55);
+		btnSearchFlight.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Payment_Address pa = new Payment_Address();
-				pa.NewScreen();
 			}
 		});
-		btnPaymentaddress.setBounds(125, 171, 182, 41);
-		btnPaymentaddress.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		frame.getContentPane().add(btnPaymentaddress);
+		HomePage.getContentPane().add(btnSearchFlight);
 		
-		JButton btnFlightConnections = new JButton("Flight Connections");
-		btnFlightConnections.addActionListener(new ActionListener() {
+		JButton btnbookFlight = new JButton("BookFlight");
+		btnbookFlight.setBounds(238, 240, 207, 55);
+		btnbookFlight.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				FlightConnections flightCs = new FlightConnections();
-				flightCs.NewScreen();
 			}
 		});
-		btnFlightConnections.setBounds(125, 237, 182, 41);
-		btnFlightConnections.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		frame.getContentPane().add(btnFlightConnections);
-		
-		JButton btnBookFlights = new JButton("Book Flight(s)");
-		btnBookFlights.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				BookFlights bf = new BookFlights();
-				bf.NewScreen();
-			}
-		});
-		btnBookFlights.setBounds(125, 302, 182, 41);
-		btnBookFlights.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		frame.getContentPane().add(btnBookFlights);
+		HomePage.getContentPane().add(btnbookFlight);
 		
 		JButton btnManageFlights = new JButton("Manage Flights");
-		btnManageFlights.addActionListener(new ActionListener() {
+		btnManageFlights.setBounds(238, 329, 207, 55);
+		HomePage.getContentPane().add(btnManageFlights);
+		
+		JButton button = new JButton("Log Off");
+		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ManageFlights mf = new ManageFlights();
-				mf.NewScreen();
+				StartApp sp2 = new StartApp();
+				sp2.NewScreen();
 			}
 		});
-		btnManageFlights.setBounds(125, 369, 182, 41);
-		btnManageFlights.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		frame.getContentPane().add(btnManageFlights);
+		button.setBounds(238, 426, 207, 55);
+		HomePage.getContentPane().add(button);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon("/Users/Omesh/Downloads/flight.jpg"));
+		lblNewLabel.setBounds(0, 0, 750, 578);
+		HomePage.getContentPane().add(lblNewLabel);
+		
+		
+		
 	}
-
+	
 	public void NewScreen() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					GUIApp window = new GUIApp();
-					window.frame.setVisible(true);
+					window.HomePage.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
-		});
+	});
 	}
 }
