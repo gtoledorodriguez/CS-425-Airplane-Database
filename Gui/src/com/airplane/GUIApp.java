@@ -1,11 +1,16 @@
 package com.airplane;
 import java.awt.EventQueue;
+import java.awt.Image;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.io.InputStream;
 import java.awt.event.ActionEvent;
+
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 public class GUIApp {
@@ -108,8 +113,20 @@ public class GUIApp {
 		btnMileageProgram.setBounds(238, 336, 207, 55);
 		HomePage.getContentPane().add(btnMileageProgram);
 		
+		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("/Users/Omesh/Downloads/flight.jpg"));
+		
+		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+		InputStream input = classLoader.getResourceAsStream("flight.jpg");
+		Image logo = null;
+		try {
+			logo = ImageIO.read(input);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		lblNewLabel.setIcon(new ImageIcon(logo));
 		lblNewLabel.setBounds(0, 0, 750, 578);
 		HomePage.getContentPane().add(lblNewLabel);
 		

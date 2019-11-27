@@ -8,10 +8,16 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.io.InputStream;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import java.awt.Image;
+
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import java.awt.Color;
+import java.lang.ClassLoader;
 
 public class StartApp {
 
@@ -47,7 +53,7 @@ public class StartApp {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 750, 600);
+		frame.setBounds(100, 100, 765, 608);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -109,13 +115,24 @@ public class StartApp {
 		frame.getContentPane().add(sgnup);
 		
 		JLabel lblGoneWithThe = new JLabel("Gone With The Wind");
-		lblGoneWithThe.setBounds(170, 434, 394, 61);
+		lblGoneWithThe.setBounds(170, 434, 453, 61);
 		lblGoneWithThe.setFont(new Font("Bodoni 72 Oldstyle", Font.PLAIN, 46));
 		frame.getContentPane().add(lblGoneWithThe);
 		
-		JLabel SignIn = new JLabel("New label");
+		JLabel SignIn = new JLabel("");
 		SignIn.setBounds(0, 1, 750, 572);
-		SignIn.setIcon(new ImageIcon("/Users/Omesh/Downloads/flight.jpg"));
+		
+		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+		InputStream input = classLoader.getResourceAsStream("flight.jpg");
+		Image logo = null;
+		try {
+			logo = ImageIO.read(input);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		SignIn.setIcon(new ImageIcon(logo));
 		frame.getContentPane().add(SignIn);
 		
 	}
