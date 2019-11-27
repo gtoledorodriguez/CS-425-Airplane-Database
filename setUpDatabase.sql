@@ -66,19 +66,30 @@ CREATE OR REPLACE PROCEDURE public.addcust(
 	_age integer,
 	fname character varying,
 	mname character varying,
-	lname character varying,
+	lname character varying)
+LANGUAGE 'plpgsql'
+
+AS $BODY$
+BEGIN
+	INSERT INTO Customer(email_id, password, age, first_name, middle_name, last_name)
+	values (eid, pwd, _age, fname, mname, lname);
+
+END;
+$BODY$;
+
+CREATE OR REPLACE PROCEDURE public.addhomeport(
+	eid character varying,
 	port_id character)
 LANGUAGE 'plpgsql'
 
 AS $BODY$
 BEGIN
-	INSERT INTO Customer(email_id, password, age, first_name, middle_name, last_name, airport_id)
-	values (eid, pwd, _age, fname, mname, lname, port_id);
-
 	INSERT INTO HomeAirport(email_id, airport_id)
 	values (eid, port_id);
+
 END;
 $BODY$;
+
 
 CREATE OR REPLACE PROCEDURE public.addaddr(
 	eid character varying,
