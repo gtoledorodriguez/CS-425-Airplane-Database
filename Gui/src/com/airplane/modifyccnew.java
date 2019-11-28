@@ -57,7 +57,7 @@ public class modifyccnew {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel lblPreviousCardDetails = new JLabel("Previous Card Details:");
+		JLabel lblPreviousCardDetails = new JLabel("New Card Details:");
 		lblPreviousCardDetails.setFont(new Font("Lucida Grande", Font.PLAIN, 22));
 		lblPreviousCardDetails.setBounds(249, 6, 287, 43);
 		frame.getContentPane().add(lblPreviousCardDetails);

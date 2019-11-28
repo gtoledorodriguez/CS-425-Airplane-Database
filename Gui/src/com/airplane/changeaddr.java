@@ -173,7 +173,7 @@ public class changeaddr {
 		JButton btnDone = new JButton("Done");
 		btnDone.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				lrun.changeaddress(address.auname.getText(), osnum.getText(), osname.getText(), oapnum.getText(), ocity.getText(), ostate.getText(), ozcode.getText(), nsnum.getText(), nsname.getText(), napnum.getText(), ncity.getText(), nstate.getText(), nzipp.getText());
+				lrun.changeaddress(StartApp.uname.getText(), osnum.getText(), osname.getText(), oapnum.getText(), ocity.getText(), ostate.getText(), ozcode.getText(), nsnum.getText(), nsname.getText(), napnum.getText(), ncity.getText(), nstate.getText(), nzipp.getText());
 				address a2 = new address();
 				a2.NewScreen();
 			}

@@ -73,20 +73,20 @@ public class GUIApp {
 		});
 		HomePage.getContentPane().add(btnSearchFlight);
 		
-		JButton btnbookFlight = new JButton("BookFlight");
+		JButton btnbookFlight = new JButton("Cancel Booking");
 		btnbookFlight.setBounds(238, 199, 207, 55);
 		btnbookFlight.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BookFlights bf = new BookFlights();
+				CancelBooking bf = new CancelBooking();
 				bf.NewScreen();
 			}
 		});
 		HomePage.getContentPane().add(btnbookFlight);
 		
-		JButton btnManageFlights = new JButton("Manage Flights");
+		JButton btnManageFlights = new JButton("Payment");
 		btnManageFlights.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ManageFlights mf = new ManageFlights();
+				Payment mf = new Payment();
 				mf.NewScreen();
 			}
 		});

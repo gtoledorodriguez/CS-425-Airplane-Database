@@ -3,6 +3,8 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
@@ -200,6 +202,8 @@ public class creditcard {
 			public void actionPerformed(ActionEvent e) {
 				long f = Long.parseLong(ccnum.getText());
 				lrun.remCC(f);
+				
+				JOptionPane.showMessageDialog(null,  "Card has been deleted! Click View My Cards to Check. " ,"Delete", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 		frame.getContentPane().add(btnDeleteCard);

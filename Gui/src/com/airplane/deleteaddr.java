@@ -118,7 +118,7 @@ public class deleteaddr {
 		JButton btnDelete = new JButton("Delete");
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				lrun.remaddress(address.auname.getText(), snum.getText(), sname.getText(), apnum.getText(), city.getText(), state.getText(), zcode.getText());
+				lrun.remaddress(StartApp.uname.getText(), snum.getText(), sname.getText(), apnum.getText(), city.getText(), state.getText(), zcode.getText());
 				address a4 = new address();
 				a4.NewScreen();
 			}
@@ -129,7 +129,7 @@ public class deleteaddr {
 		JButton btnAdd = new JButton("Add");
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				lrun.addaddress(address.auname.getText(), snum.getText(), sname.getText(), apnum.getText(), city.getText(), state.getText(), zcode.getText());
+				lrun.addaddress(StartApp.uname.getText(), snum.getText(), sname.getText(), apnum.getText(), city.getText(), state.getText(), zcode.getText());
 				address a5 = new address();
 				a5.NewScreen();
 			}

@@ -139,6 +139,8 @@ CREATE TABLE Booking(
   seat_type char(5),
   cc_number INT,
   airline_id CHAR(2),
+	ec_seats INT,
+	fc_seats INT,
   PRIMARY KEY (email_id),
 	FOREIGN KEY (email_id) REFERENCES Customer(email_id),
   FOREIGN KEY (cc_number) REFERENCES CreditCard(cc_number),
@@ -166,7 +168,9 @@ CREATE TABLE Booked_Flights (
   email_id CHAR(20),
   flight_num INT,
   f_date DATE,
-  PRIMARY KEY (email_id),
+	ec_seats INT,
+	fc_seats INT,
+  PRIMARY KEY (email_id,flight_num, f_date, airline_id),
   FOREIGN KEY (airline_id) REFERENCES Airline(airline_id),
   FOREIGN KEY (flight_num, f_date, airline_id) REFERENCES Flight (flight_num, f_date, airline_id)
 );
@@ -177,13 +181,11 @@ CREATE INDEX Booked_Flights_index ON Booked_Flights (airline_id, flight_num, f_d
 CREATE TABLE MilageProgram(
   email_id CHAR(20), /*Varchar*/
 	airline_id CHAR(2),
-  flight_num INT,
-  f_date DATE,
   /*duration INT(50),*/
-  bonus_miles int,
-  bonus_id char(10),
+  bonus_miles int DEFAULT 1029,
+  bonus_id Serial,
   PRIMARY KEY (bonus_id),
   FOREIGN KEY (email_id) REFERENCES Customer(email_id),
-  FOREIGN KEY (airline_id, flight_num, f_date) REFERENCES Flight(airline_id, flight_num, f_date)
+  FOREIGN KEY (airline_id) REFERENCES Airline(airline_id)
 );
 CREATE INDEX MileageProgram_index ON MilageProgram (email_id);

@@ -26,6 +26,7 @@ import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JTextPane;
 import java.awt.TextArea;
+import java.text.SimpleDateFormat;
 
 public class FlightConnections {
 
@@ -41,6 +42,11 @@ public class FlightConnections {
 	private final String url = "jdbc:postgresql://localhost/projtest2";
     String user = "";
     String password = "";
+    private JTextField f_date;
+    private JTextField flight_num;
+    private JTextField Airline_Id;
+    private JTextField no_seatsE;
+    private JTextField no_seatsF;
     public Connection connect() throws SQLException{
     	Connection conn = null;
     	Scanner u = new Scanner(System.in);
@@ -321,7 +327,7 @@ public class FlightConnections {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 950, 522);
+		frame.setBounds(100, 100, 1162, 531);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JButton btnMainMenu = new JButton("Main Menu");
@@ -337,50 +343,50 @@ public class FlightConnections {
 		frame.getContentPane().add(btnMainMenu);
 		
 		JLabel lblLimit = new JLabel("Limit: ");
-		lblLimit.setBounds(651, 55, 46, 33);
+		lblLimit.setBounds(863, 55, 46, 33);
 		lblLimit.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frame.getContentPane().add(lblLimit);
 		
 		JSpinner spinner = new JSpinner();
-		spinner.setBounds(707, 55, 55, 33);
+		spinner.setBounds(919, 55, 55, 33);
 		spinner.setModel(new SpinnerNumberModel(1, 1, 10, 1));
 		spinner.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		frame.getContentPane().add(spinner);
 		
 		
 		JLabel lblDepartAirport = new JLabel("Depart. Airport: ");
-		lblDepartAirport.setBounds(651, 259, 121, 26);
+		lblDepartAirport.setBounds(853, 258, 121, 26);
 		lblDepartAirport.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frame.getContentPane().add(lblDepartAirport);
 		
 		textDepartA = new JTextField();
 		textDepartA.setText("IATA Code");
 		textDepartA.setToolTipText("");
-		textDepartA.setBounds(651, 294, 121, 26);
+		textDepartA.setBounds(853, 294, 121, 26);
 		frame.getContentPane().add(textDepartA);
 		textDepartA.setColumns(10);
 		
 		
 		JLabel lblArrivalAirport = new JLabel("Arrival Airport: ");
-		lblArrivalAirport.setBounds(795, 259, 113, 26);
+		lblArrivalAirport.setBounds(988, 259, 113, 26);
 		lblArrivalAirport.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frame.getContentPane().add(lblArrivalAirport);
 		
 		textArrivalA = new JTextField();
 		textArrivalA.setText("IATA Code");
-		textArrivalA.setBounds(795, 294, 113, 26);
+		textArrivalA.setBounds(988, 294, 113, 26);
 		textArrivalA.setColumns(10);
 		frame.getContentPane().add(textArrivalA);
 		
 				
 		JLabel lblOrderBy = new JLabel("Order By: ");
-		lblOrderBy.setBounds(651, 346, 82, 33);
+		lblOrderBy.setBounds(863, 346, 82, 33);
 		lblOrderBy.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frame.getContentPane().add(lblOrderBy);
 		
 		int pd = 0;
 		JRadioButton rdbtnPrice = new JRadioButton("Price");
-		rdbtnPrice.setBounds(651, 385, 105, 21);
+		rdbtnPrice.setBounds(863, 393, 105, 21);
 		orderByPD.add(rdbtnPrice);
 		frame.getContentPane().add(rdbtnPrice);
 		if(rdbtnPrice.isSelected()) {
@@ -388,7 +394,7 @@ public class FlightConnections {
 		}
 		
 		JRadioButton rdbtnDuration = new JRadioButton("Duration");
-		rdbtnDuration.setBounds(651, 416, 105, 21);
+		rdbtnDuration.setBounds(863, 416, 105, 21);
 		orderByPD.add(rdbtnDuration);
 		frame.getContentPane().add(rdbtnDuration);
 		if(rdbtnDuration.isSelected()) {
@@ -396,13 +402,13 @@ public class FlightConnections {
 		}
 		
 		JLabel lblDescasc = new JLabel("Desc/Asc: ");
-		lblDescasc.setBounds(776, 346, 82, 33);
+		lblDescasc.setBounds(1002, 346, 82, 33);
 		lblDescasc.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frame.getContentPane().add(lblDescasc);
 		String ad = "";
 		
 		JRadioButton rdbtnDescending = new JRadioButton("Descending");
-		rdbtnDescending.setBounds(776, 385, 105, 21);
+		rdbtnDescending.setBounds(996, 385, 105, 21);
 		desc_asc.add(rdbtnDescending);
 		frame.getContentPane().add(rdbtnDescending);
 		if(rdbtnDescending.isSelected()) {
@@ -410,7 +416,7 @@ public class FlightConnections {
 		}
 		
 		JRadioButton rdbtnAscending = new JRadioButton("Ascending");
-		rdbtnAscending.setBounds(776, 416, 105, 21);
+		rdbtnAscending.setBounds(996, 416, 105, 21);
 		desc_asc.add(rdbtnAscending);
 		frame.getContentPane().add(rdbtnAscending);
 		if(rdbtnAscending.isSelected()) {
@@ -418,31 +424,31 @@ public class FlightConnections {
 		}
 		
 		JLabel lblAvailableAirpots = new JLabel("Available Airpots:");
-		lblAvailableAirpots.setBounds(651, 98, 182, 26);
+		lblAvailableAirpots.setBounds(838, 98, 182, 26);
 		lblAvailableAirpots.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frame.getContentPane().add(lblAvailableAirpots);
 		
 		TextArea textAreaAA = new TextArea();
-		textAreaAA.setBounds(651, 139, 257, 114);
+		textAreaAA.setBounds(844, 139, 257, 114);
 		textAreaAA.setEditable(false);
 		frame.getContentPane().add(textAreaAA);
 		textAreaAA.setText(this.getAirport());
 		
 		JLabel lblReturnFlight = new JLabel("Return Flight?");
 		lblReturnFlight.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblReturnFlight.setBounds(651, 442, 105, 33);
+		lblReturnFlight.setBounds(854, 443, 105, 33);
 		frame.getContentPane().add(lblReturnFlight);
 		boolean rf = false;
 		
 		JRadioButton rdbtnYes = new JRadioButton("Yes");
-		rdbtnYes.setBounds(753, 450, 55, 21);
+		rdbtnYes.setBounds(965, 450, 55, 21);
 		frame.getContentPane().add(rdbtnYes);
 		if(rdbtnYes.isSelected()) {
 			rf = true;
 		}
 		
 		JRadioButton rdbtnNo = new JRadioButton("No");
-		rdbtnNo.setBounds(826, 450, 55, 21);
+		rdbtnNo.setBounds(1046, 450, 55, 21);
 		frame.getContentPane().add(rdbtnNo);
 		if(rdbtnNo.isSelected()) {
 			rf = false;
@@ -450,28 +456,28 @@ public class FlightConnections {
 		
 		JLabel lblFlights = new JLabel("Flights:");
 		lblFlights.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblFlights.setBounds(84, 55, 88, 33);
+		lblFlights.setBounds(39, 55, 88, 33);
 		frame.getContentPane().add(lblFlights);
 		
 		TextArea textArea_Flights = new TextArea();
 		textArea_Flights.setEditable(false);
-		textArea_Flights.setBounds(77, 94, 440, 150);
+		textArea_Flights.setBounds(39, 98, 407, 150);
 		frame.getContentPane().add(textArea_Flights);
 		
 		
 		JLabel lblReturnFlights = new JLabel("Return Flights:");
 		lblReturnFlights.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblReturnFlights.setBounds(84, 250, 117, 33);
+		lblReturnFlights.setBounds(39, 256, 117, 33);
 		frame.getContentPane().add(lblReturnFlights);
 		
 		TextArea textArea_ReturnFlights = new TextArea();
 		textArea_ReturnFlights.setEditable(false);
-		textArea_ReturnFlights.setBounds(77, 289, 440, 150);
+		textArea_ReturnFlights.setBounds(39, 287, 399, 150);
 		frame.getContentPane().add(textArea_ReturnFlights);
 		
 		
 		
-		JButton btnSubmit = new JButton("Submit");
+		JButton btnSubmit = new JButton("Search Flights");
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//System.out.println("Debugging");
@@ -511,8 +517,145 @@ public class FlightConnections {
 			}
 		});
 		btnSubmit.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnSubmit.setBounds(791, 55, 117, 33);
+		btnSubmit.setBounds(863, 12, 221, 33);
 		frame.getContentPane().add(btnSubmit);
+		
+		JLabel lblEnterFlightDate = new JLabel("Enter Flight Date:");
+		lblEnterFlightDate.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblEnterFlightDate.setBounds(477, 111, 113, 33);
+		frame.getContentPane().add(lblEnterFlightDate);
+		
+		JLabel lblEnterFlightNo = new JLabel("Enter Flight No.:");
+		lblEnterFlightNo.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblEnterFlightNo.setBounds(477, 154, 113, 26);
+		frame.getContentPane().add(lblEnterFlightNo);
+		
+		JLabel lblEnterAirlineId = new JLabel("Enter Airline ID:");
+		lblEnterAirlineId.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblEnterAirlineId.setBounds(477, 190, 113, 26);
+		frame.getContentPane().add(lblEnterAirlineId);
+		
+		JLabel lblEnterNoOf = new JLabel("Enter No. of Economic Seats:");
+		lblEnterNoOf.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblEnterNoOf.setBounds(477, 238, 182, 17);
+		frame.getContentPane().add(lblEnterNoOf);
+		
+		JLabel lblEnterNoOf_1 = new JLabel("Enter No. of First Class Seats:");
+		lblEnterNoOf_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblEnterNoOf_1.setBounds(477, 282, 182, 21);
+		frame.getContentPane().add(lblEnterNoOf_1);
+		
+		f_date = new JTextField();
+		f_date.setBounds(614, 119, 96, 19);
+		frame.getContentPane().add(f_date);
+		f_date.setColumns(10);
+		
+		flight_num = new JTextField();
+		flight_num.setBounds(614, 154, 96, 19);
+		frame.getContentPane().add(flight_num);
+		flight_num.setColumns(10);
+		
+		Airline_Id = new JTextField();
+		Airline_Id.setBounds(614, 195, 96, 19);
+		frame.getContentPane().add(Airline_Id);
+		Airline_Id.setColumns(10);
+		
+		no_seatsE = new JTextField();
+		no_seatsE.setBounds(658, 238, 96, 19);
+		frame.getContentPane().add(no_seatsE);
+		no_seatsE.setColumns(10);
+		
+		no_seatsF = new JTextField();
+		no_seatsF.setBounds(658, 284, 96, 19);
+		frame.getContentPane().add(no_seatsF);
+		no_seatsF.setColumns(10);
+		
+		JButton btnBookFlight = new JButton("Book Flight");
+		btnBookFlight.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String sf_date = f_date.getText();
+				Date df_date = Date.valueOf(sf_date);
+				int b = Integer.parseInt(flight_num.getText());
+				int c = Integer.parseInt(no_seatsE.getText());
+				int d = Integer.parseInt(no_seatsF.getText());
+				setBookFlights(df_date, StartApp.uname.getText(),b, Airline_Id.getText(), c, d);
+				setEconomicFirst(df_date,b,Airline_Id.getText(),c,d);
+				
+				Payment mf = new Payment();
+				mf.NewScreen(); 
+			}
+
+			private void setBookFlights(Date f_date, String email_id,int flight_num, String airline_id, int no_seatsE, int no_seatsF) {
+				    	String SQL1 ="INSERT INTO booked_flights Values (?,?,?,?,?,?)";
+				    	
+				    	
+				    	try(Connection conn = connect(); 
+				    	PreparedStatement mystmt = conn.prepareStatement(SQL1)){
+				    		
+				    		mystmt.setString(1, airline_id);
+				    		mystmt.setString(2, email_id);
+				    		mystmt.setInt(3, flight_num);
+				    		mystmt.setDate(4, f_date);
+				    		mystmt.setInt(5, no_seatsE);
+				    		mystmt.setInt(6, no_seatsF);
+				    		
+				    		
+				    	
+				    		ResultSet rs = mystmt.executeQuery();
+
+				    		while(rs.next()) {
+				    			//System.out.println("Error?");
+				    			String str = "\n=======================================================";
+
+				    			str = str + "\nAirline: " + rs.getString("airline_id");
+				    			str = str + "\nFlight No.: " + rs.getInt("flight_num");
+				    			str = str + "\nFlight Date: " + rs.getDate("f_date");
+				    			str = str + "\nDepart Airport: " + rs.getString("depart_airport");
+				    			str = str + "\nDestination Airport: " + rs.getString("dest_airport");
+				    			str = str + "\nDeparture: " + rs.getTime("depart_time");
+				    			str = str + "\nArrival: " + rs.getTime("arrival_time");
+				    			str = str + "\nEconomic Seats: " + rs.getInt("num_ec_seats");
+				    			str = str + "\nFirst Class Seats: " + rs.getInt("num_fc_seats");
+				    			
+				    			
+
+				    			System.out.println(str);
+				    			duration(rs.getString("airline_id"), rs.getInt("flight_num"), rs.getDate("f_date"));
+				    			getPrice(rs.getString("airline_id"), rs.getInt("flight_num"), rs.getDate("f_date"));
+				    			System.out.println("=======================================================");
+				    		}
+				    		
+				    	} catch (SQLException e) {
+				            System.out.println(e.getMessage());
+				        }
+				    }
+			
+			
+			  public void setEconomicFirst(Date f_date, int flight_num, String airline_id, int no_ec_seats, int no_fc_seats){
+			    	String SQL ="Update Flight  "
+			    			+ "SET num_ec_seats = num_ec_seats-?,num_fc_seats = num_fc_seats-? "
+			    			+ "WHERE airline_id = ? " 
+			    			+ "and flight_num = ? "  
+			    		    + "and f_date = ? ";
+
+			    	try(Connection conn =connect(); 
+			    	PreparedStatement mystmt = conn.prepareStatement(SQL)){
+			    		mystmt.setInt(1, no_ec_seats);
+			    		mystmt.setInt(2, no_fc_seats);
+			    		mystmt.setString(3, airline_id);
+			    		mystmt.setInt(4, flight_num);
+			    		mystmt.setDate(5, f_date);
+			    		
+			    		
+			    	} catch (SQLException e) {
+			            System.out.println(e.getMessage());
+			        }
+			    }
+			
+		});
+		btnBookFlight.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnBookFlight.setBounds(508, 342, 194, 44);
+		frame.getContentPane().add(btnBookFlight);
 	}
 
 	public void NewScreen() {
