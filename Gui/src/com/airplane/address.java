@@ -15,7 +15,6 @@ import java.awt.Color;
 public class address {
 
 	private JFrame frame;
-	static JTextField auname;
 	/**
 	 * Launch the application.
 	 */
@@ -69,10 +68,6 @@ public class address {
 		});
 		frame.getContentPane().add(btnSkip);
 		
-		JLabel lblPleaseEnterYour = new JLabel("Please Enter Your Username:");
-		lblPleaseEnterYour.setBounds(16, 27, 223, 16);
-		frame.getContentPane().add(lblPleaseEnterYour);
-		
 		
 		
 		JButton btnAddAddress = new JButton("Add Address");
@@ -113,22 +108,17 @@ public class address {
 		lbladformat.setBounds(16, 72, 728, 16);
 		frame.getContentPane().add(lbladformat);
 		
-		auname = new JTextField();
-		auname.setBounds(248, 22, 130, 26);
-		frame.getContentPane().add(auname);
-		auname.setColumns(10);
-		
 		JTextArea try1 = new JTextArea();
 		try1.setBackground(new Color(255, 204, 102));
 		try1.setBounds(6, 94, 738, 61);
 		try1.setEditable(false);
 		frame.getContentPane().add(try1);
 		
-		JButton btnSubmit = new JButton("Submit");
-		btnSubmit.setBounds(447, 22, 117, 29);
+		JButton btnSubmit = new JButton("View Addresses");
+		btnSubmit.setBounds(268, 16, 117, 29);
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try1.setText(lrun.listaddr(auname.getText()));
+				try1.setText(lrun.listaddr(StartApp.uname.getText()));
 			}});
 		frame.getContentPane().add(btnSubmit);
 		
