@@ -1,0 +1,19 @@
+Requirement 1:
+ER-Model, turned in
+
+Requirement 2:
+DDL Script, turned in
+
+Requirement 3:
+GUI App turned in.
+
+On the repository you will see a folder called GUI and java file called App. The file, App, is just java code to test out connecting to the database and the best way to do some of the SQLs. The folder GUI holds the actually app.
+If you want to use the database and GUI on your own computer here are the instructions.
+
+1) Log into you database and copy and paste the file setUpDatabase.sql. This file has all the sql needed to set it up.
+
+2) For the GUI, we are using Eclipse with a plugin known as World Builder.
+
+The first 10 minutes of the following link show which Eclipse we downloaded and how to download the plugin. https://www.youtube.com/watch?v=mDxEGtMNPtA
+
+3) The video we took of our working App can not be uploaded to the repository so we will share it through Blackboard.
